@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div id="header-wrap">
-      <a href="/" id="logo"><img id="logo-img" src="@/assets/images/logo.jpg"></a>
+      <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
       <h1>上海松江商会</h1>
       <div id="header-right">
           <router-link class="login" to="/">登录/注册</router-link>
