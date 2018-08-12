@@ -29,8 +29,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  @import '~styles/variables.styl'
   #header
-    font-family: "微软雅黑"
+    font-family: $fontFamily
     background: #efefef
     #header-wrap
       margin: 0 auto
@@ -50,7 +51,7 @@ export default {
         float: left
         font-size: 36px
         line-height: 100px
-        font-family: "微软雅黑"
+        font-family: $fontFamily
         color: #DC5A3B
         letter-spacing: 2px
       #header-right
@@ -62,7 +63,7 @@ export default {
           color: #444
           line-height: 50px
           text-decoration: none
-          font-family: "微软雅黑"
+          font-family: $fontFamily
         .search
           display: block
           .input
@@ -73,8 +74,8 @@ export default {
             border: none
             border-radius: 3px 0 0 3px
             color: #666
-            padding: 0 4px
-            font-family: "微软雅黑"
+            padding: 0 8px
+            font-family: $fontFamily
           .btn
             cursor: pointer
             width: 40px
@@ -83,11 +84,11 @@ export default {
             background-color: #888
             color: #fff
             margin-left: -4px
-            font-family: "微软雅黑"
+            font-family: $fontFamily
             font-size: 13px
     #header-nav
       height: 55px
-      background: #EEB345
+      background: $bgColor
       box-shadow: 1px 1px 10px #ccc
       ul
         width: 640px
@@ -102,5 +103,5 @@ export default {
         .menu
           color: #fff
         .menu:hover
-          color: #DC5A3B
+          color: $hoverColor
 </style>
