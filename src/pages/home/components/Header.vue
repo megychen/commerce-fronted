@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div id="header-wrap">
-      <a href="/" id="logo"><img id="logo-img" src="/assets/logo.jpg"></a>
+      <a href="/" id="logo"><img id="logo-img" src="@/assets/images/logo.jpg"></a>
       <h1>上海松江商会</h1>
       <div id="header-right">
           <router-link class="login" to="/">登录/注册</router-link>
@@ -31,7 +31,7 @@ export default {
 <style lang="stylus" scoped>
   #header
     font-family: "微软雅黑"
-    background: #efefef
+    background: #fff
     #header-wrap
       margin: 0 auto
       width: 1024px
@@ -63,14 +63,16 @@ export default {
           line-height: 50px
           text-decoration: none
           font-family: "微软雅黑"
+          letter-spacing: 1px
         .search
           display: block
           .input
+            box-sizing: border-box
+            border: 1px solid #888
             outline: none
             height: 26px
             line-height: 24px
             width: 180px
-            border: none
             border-radius: 3px 0 0 3px
             color: #666
             padding: 0 4px
