@@ -1,18 +1,22 @@
 <template>
   <div class="wrapper">
     <backend-header></backend-header>
-    <backend-content></backend-content>
+    <sidebar></sidebar>
+    <div class="content-wrapper">
+      <router-view></router-view>
+    </div>
+    <div class="clear"></div>
   </div>
 </template>
 
 <script>
 import BackendHeader from './components/Header'
-import BackendContent from './components/Content'
+import Sidebar from './components/Sidebar'
 export default {
   name: 'Backend',
   components: {
     BackendHeader,
-    BackendContent
+    Sidebar
   }
 }
 </script>
@@ -23,4 +27,12 @@ export default {
     margin: 20px auto
     border: 1px solid #eaeaea
     padding: 20px
+    .content-wrapper
+      box-sizing: border-box
+      float: right
+      width: 78%
+      padding: 0 20px
+      border: 1px solid $borderColor
+    .clear
+      clear: both
 </style>
