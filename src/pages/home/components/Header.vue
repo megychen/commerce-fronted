@@ -1,10 +1,12 @@
 <template>
   <div id="header">
     <div id="header-wrap">
-      <a href="/" id="logo"><img id="logo-img" src="/assets/logo.jpg"></a>
-      <h1>上海松江商会</h1>
+      <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
+      <h1>上海市松江区温州商会</h1>
       <div id="header-right">
-          <router-link class="login" to="/">登录/注册</router-link>
+          <router-link class="login" to="/">管理员</router-link>
+          <router-link class="login l-margin" to="/">注册</router-link>
+          <router-link class="login l-margin" to="/">登录</router-link>
           <form action="" class="search">
             <input class="input" type="text" placeholder="请输入关键字">
             <input class="btn" type="button" value="搜索">
@@ -32,7 +34,7 @@ export default {
   @import '~styles/variables.styl'
   #header
     font-family: $fontFamily
-    background: #efefef
+    background: #fff
     #header-wrap
       margin: 0 auto
       width: 1024px
@@ -64,14 +66,20 @@ export default {
           line-height: 50px
           text-decoration: none
           font-family: $fontFamily
+          letter-spacing: 1px
+        .login:hover
+          color: $hoverColor
+        .l-margin
+          margin-right: 5px
         .search
           display: block
           .input
+            box-sizing: border-box
+            border: 1px solid #888
             outline: none
             height: 26px
             line-height: 24px
             width: 180px
-            border: none
             border-radius: 3px 0 0 3px
             color: #666
             padding: 0 8px
