@@ -1,11 +1,23 @@
 <template>
   <div class="footer border-top">
-    <p class="info">
-      地址：松江區三新北路100弄1號三樓<br>
-      E-Mail：jiahe707@163.com<br>
-      電話：021-37793081 33558666 33558686<br>
-      傳真：37793080
-    </p>
+    <div class="info">
+      <div class="info-text">
+        <span class="iconfont info-icon">&#xe61f;</span>
+        <p>地址：松江区三新北路100弄1号三楼</p>
+      </div>
+      <div class="info-text">
+        <span class="iconfont info-icon">&#xe604;</span>
+        <p>邮箱：sj_wzsh@163.com</p>
+      </div>
+      <div class="info-text">
+        <span class="iconfont info-icon">&#xe624;</span>
+        <p>电话：021-37793081</p>
+      </div>
+      <div class="info-text">
+        <span class="iconfont info-icon">&#xe6e3;</span>
+        <p>传真：021-37793080</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,14 +30,18 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
   .footer
-    margin: 40px auto
-    padding: 20px
-    width: 1024px
-    overflow: hidden
-    height: 100px
-    color: #666
-    font-family: $fontFamily
+    background: #eee
+
     .info
-      text-align: center
-      line-height: 24px
+      padding: 20px
+      margin: 10px auto
+      width: 280px
+      overflow: hidden
+      color: #666
+      font-family: $fontFamily
+      font-size: 14px
+      line-height: 30px
+      .info-icon
+        float: left
+        margin-right: 8px
 </style>

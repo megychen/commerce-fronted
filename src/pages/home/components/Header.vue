@@ -2,9 +2,11 @@
   <div id="header">
     <div id="header-wrap">
       <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
-      <h1>上海松江商会</h1>
+      <h1>上海市松江区温州商会</h1>
       <div id="header-right">
-          <router-link class="login" to="/">登录/注册</router-link>
+          <router-link class="login" to="/">管理员</router-link>
+          <router-link class="login l-margin" to="/">注册</router-link>
+          <router-link class="login l-margin" to="/">登录</router-link>
           <form action="" class="search">
             <input class="input" type="text" placeholder="请输入关键字">
             <input class="btn" type="button" value="搜索">
@@ -65,6 +67,10 @@ export default {
           text-decoration: none
           font-family: $fontFamily
           letter-spacing: 1px
+        .login:hover
+          color: $hoverColor
+        .l-margin
+          margin-right: 5px
         .search
           display: block
           .input
