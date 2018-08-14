@@ -4,14 +4,14 @@
       <router-link to="/admin/posts">
         <div class="side-item border-bottom">商会新闻</div>
       </router-link>
-      <router-link to="/">
+      <router-link to="/admin/companies">
         <div class="side-item border-bottom">企业风采</div>
       </router-link>
       <div class="side-item">其他</div>
     </div>
     <ul class=" post-item post-menu-content border-top">
       <router-link to="/admin/posts-new"><li class="border-bottom">新增商会新闻专题</li></router-link>
-      <router-link to="/admin/others"><li>新增企业风采专题</li></router-link>
+      <router-link to="/admin/companies-new"><li>新增企业风采专题</li></router-link>
     </ul>
   </div>
 </template>

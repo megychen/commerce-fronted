@@ -7,7 +7,7 @@
 <script>
 import NewTemplate from '../common/NewTem'
 export default {
-  name: 'PostEdit',
+  name: 'CompanyNew',
   components: {
     NewTemplate
   }

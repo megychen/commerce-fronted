@@ -5,6 +5,9 @@ import Backend from '@/pages/backend/Backend'
 import Posts from '@/pages/posts/PostsAll'
 import PostNew from '@/pages/posts/New'
 import PostEdit from '@/pages/posts/Edit'
+import Companies from '@/pages/companies/CompaniesAll'
+import CompanyNew from '@/pages/companies/New'
+import CompanyEdit from '@/pages/companies/Edit'
 
 Vue.use(Router)
 
@@ -22,7 +25,10 @@ export default new Router({
         {path: '/admin', redirect: 'posts'},
         { path: '/admin/posts', component: Posts },
         { path: '/admin/posts-new', component: PostNew },
-        { path: '/admin/posts-edit/:id', component: PostEdit }
+        { path: '/admin/posts-edit/:id', component: PostEdit },
+        { path: '/admin/companies', component: Companies },
+        { path: '/admin/companies-new', component: CompanyNew },
+        { path: '/admin/companies-edit/:id', component: CompanyEdit }
       ]
     }
   ]
