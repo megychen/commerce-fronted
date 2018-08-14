@@ -16,7 +16,7 @@
     <div id="header-nav">
       <ul>
         <li><router-link class="menu" to="/">首页</router-link></li>
-        <li><router-link class="menu" to="/">商会概况</router-link></li>
+        <li><router-link class="menu" to="/intro">商会概况</router-link></li>
         <li><router-link class="menu" to="/">商会新闻</router-link></li>
         <li><router-link class="menu" to="/">企业风采</router-link></li>
       </ul>
