@@ -8,6 +8,7 @@ import PostEdit from '@/pages/posts/Edit'
 import Companies from '@/pages/companies/CompaniesAll'
 import CompanyNew from '@/pages/companies/New'
 import CompanyEdit from '@/pages/companies/Edit'
+import Index from '@/pages/index/Index.vue'
 
 Vue.use(Router)
 
@@ -16,7 +17,11 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children: [
+        {path: '/', redirect: 'index'},
+        {path: '/index', component: Index}
+      ]
     }, {
       path: '/admin',
       name: 'Backend',
