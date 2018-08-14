@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import '~styles/variables.styl'
   .side-wrapper
     float: left

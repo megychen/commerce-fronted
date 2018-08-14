@@ -8,6 +8,8 @@ import PostEdit from '@/pages/posts/Edit'
 import Companies from '@/pages/companies/CompaniesAll'
 import CompanyNew from '@/pages/companies/New'
 import CompanyEdit from '@/pages/companies/Edit'
+import Signup from '@/pages/register/Signup'
+import Signin from '@/pages/register/Signin'
 import Index from '@/pages/index/Index.vue'
 import Intro from '@/pages/intro/Intro.vue'
 
@@ -37,6 +39,14 @@ export default new Router({
         { path: '/admin/companies-new', component: CompanyNew },
         { path: '/admin/companies-edit/:id', component: CompanyEdit }
       ]
+    }, {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    }, {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     }
   ]
 })
