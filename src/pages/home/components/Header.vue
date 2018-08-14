@@ -5,8 +5,8 @@
       <h1>上海市松江区温州商会</h1>
       <div id="header-right">
           <router-link class="login" to="/admin">管理员</router-link>
-          <router-link class="login l-margin" to="/">注册</router-link>
-          <router-link class="login l-margin" to="/">登录</router-link>
+          <router-link class="login l-margin" to="/signup">注册</router-link>
+          <router-link class="login l-margin" to="/signin">登录</router-link>
           <form action="" class="search">
             <input class="input" type="text" placeholder="请输入关键字">
             <input class="btn" type="button" value="搜索">
