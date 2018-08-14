@@ -105,6 +105,7 @@ export default {
         overflow: hidden
       li
         flex: 1
+        text-align: center
         float:left
         line-height: 60px
         font-size: 17px
