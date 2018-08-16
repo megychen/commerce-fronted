@@ -5,21 +5,26 @@
       <router-link :to="'/admin/companies-edit/' + item.id"><button class="button">编辑</button></router-link>
       <button class="button">删除</button>
     </li>
-    <div class="content-pagination">
-      <ul class="pagination-item-wrapper">
-        <li class="pagination-item">1</li>
-        <li class="pagination-item">2</li>
-        <li class="pagination-item">3</li>
-        <li class="pagination-item">4</li>
-        <li class="pagination-item">5</li>
-      </ul>
-    </div>
+    <li class="content-pagination">
+      <common-pagination
+        :currentPage="currentPage"
+        :totalPages="12"
+        :total="120"
+        :perPage="12"
+        @pagechanged="onPageChange"
+      >
+      </common-pagination>
+    </li>
   </ul>
 </template>
 
 <script>
+import CommonPagination from '../common/Pagination'
 export default {
   name: 'Companies',
+  components: {
+    CommonPagination
+  },
   data () {
     return {
       companiesList: [{
@@ -81,14 +86,4 @@ export default {
   .content-pagination
     margin: 20px 0
     padding: 0 30px
-    .pagination-item-wrapper
-      .pagination-item
-        margin-right: 10px
-        display: inline-block
-        padding: 5px 10px
-        border: 1px solid $borderColor
-        color: #666
-        &:hover
-          background: $borderColor
-          cursor: pointer
 </style>
