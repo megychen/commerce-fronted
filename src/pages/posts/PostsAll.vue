@@ -5,23 +5,29 @@
       <router-link :to="'/admin/posts-edit/' + item.id"><button class="button">编辑</button></router-link>
       <button class="button">删除</button>
     </li>
-    <div class="content-pagination">
-      <ul class="pagination-item-wrapper">
-        <li class="pagination-item">1</li>
-        <li class="pagination-item">2</li>
-        <li class="pagination-item">3</li>
-        <li class="pagination-item">4</li>
-        <li class="pagination-item">5</li>
-      </ul>
-    </div>
+    <li class="content-pagination">
+      <common-pagination
+        :currentPage="currentPage"
+        :totalPages="12"
+        :total="120"
+        :perPage="12"
+        @pagechanged="onPageChange"
+      >
+      </common-pagination>
+    </li>
   </ul>
 </template>
 
 <script>
+import CommonPagination from '../common/Pagination'
 export default {
   name: 'Posts',
+  components: {
+    CommonPagination
+  },
   data () {
     return {
+      currentPage: 1,
       newsList: [{
         id: '0001',
         title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
@@ -56,6 +62,12 @@ export default {
         author: '【作者】'
       }]
     }
+  },
+  methods: {
+    onPageChange (page) {
+      console.log(page)
+      this.currentPage = page
+    }
   }
 }
 </script>
@@ -75,20 +87,9 @@ export default {
     .button
       background: $bgColor
       padding: 2px 8px
-      border-radius: 4px
       color: #fff
       cursor: pointer
   .content-pagination
     margin: 20px 0
     padding: 0 30px
-    .pagination-item-wrapper
-      .pagination-item
-        margin-right: 10px
-        display: inline-block
-        padding: 5px 10px
-        border: 1px solid $borderColor
-        color: #666
-        &:hover
-          background: $borderColor
-          cursor: pointer
 </style>
