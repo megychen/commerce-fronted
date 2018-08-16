@@ -64,14 +64,13 @@ export default {
   width: 1200px
   margin: 0 auto
   h3
-    color: #333
-    font-weight: 500
-    border-left: 3px solid #0061B0
+    border-left: 3px solid #C94834
     padding-left: 10px
     font-size: 17px
     height: 18px
     line-height: 18px
     font-family: $fontFamily
+    letter-spacing: 1px
   .link-list
     overflow: hidden
     .list-item
@@ -85,6 +84,7 @@ export default {
       margin-top: 10px
       height: 28px
       line-height: 28px
+      font-family: $fontFamily
   .show-more
     float: right
     font-size: 14px
