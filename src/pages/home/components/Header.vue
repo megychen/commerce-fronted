@@ -4,9 +4,11 @@
       <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
       <h1>上海市松江区温州商会</h1>
       <div id="header-right">
-          <router-link class="login" to="/admin">管理员</router-link>
-          <router-link class="login l-margin" to="/signup">注册</router-link>
-          <router-link class="login l-margin" to="/signin">登录</router-link>
+          <router-link class="login" to="/admin">管理员(<span>{{user}}</span>)</router-link>
+          <template v-if="!user">
+            <router-link class="login l-margin" to="/signup">注册</router-link>
+            <router-link class="login l-margin" to="/signin">登录</router-link>
+          </template>
           <form action="" class="search">
             <input class="input" type="text" placeholder="请输入关键字">
             <input class="btn" type="button" value="搜索">
@@ -25,8 +27,17 @@
 </template>
 
 <script>
+// const currentUser = this.$cookie.get('commerce')['name']
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  data () {
+    return {
+      user: ''
+    }
+  },
+  mounted () {
+    this.user = JSON.parse(this.$cookie.get('commerce'))['name']
+  }
 }
 </script>
 
