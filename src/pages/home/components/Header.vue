@@ -18,7 +18,7 @@
     <div id="header-nav">
       <ul>
         <li><router-link class="menu" to="/">首页</router-link></li>
-        <li><router-link class="menu" to="/">商会概况</router-link></li>
+        <li><router-link class="menu" to="/intro">商会概况</router-link></li>
         <li><router-link class="menu" to="/">商会新闻</router-link></li>
         <li><router-link class="menu" to="/">企业风采</router-link></li>
       </ul>
@@ -106,22 +106,26 @@ export default {
             font-family: $fontFamily
             font-size: 13px
     #header-nav
-      height: 55px
+      height: 60px
       background: $bgColor
       box-shadow: 1px 1px 10px #ccc
       ul
-        width: 640px
+        width: 650px
         margin: 0 auto
+        list-style: none
         display: flex
-        overflow: hidden
-      li
-        flex: 1
         text-align: center
-        float:left
-        line-height: 60px
-        font-size: 17px
-        .menu
-          color: #fff
-        .menu:hover
-          color: $hoverColor
+        li
+          display: inline-block
+          line-height: 60px
+          flex: 1
+          .menu
+            color: #fff
+            display: inline-block
+            height: 60px
+            font-size: 18px
+            letter-spacing: 1px
+          .menu:hover
+            color: $hoverColor
+
 </style>
