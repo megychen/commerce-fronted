@@ -1,6 +1,6 @@
 <template>
   <div class="friends">
-    <h3>友情链接</h3>
+    <div class="title"><span>友情链接</span></div>
     <ul class="link-list">
       <a
       class="list-item"
@@ -60,28 +60,35 @@ export default {
 .friends
   background: #fff
   margin-top: 15px
-  padding: 15px
   width: 1200px
   margin: 0 auto
-  h3
-    border-left: 3px solid #C94834
-    padding-left: 10px
-    font-size: 17px
-    height: 18px
-    line-height: 18px
-    font-family: $fontFamily
-    letter-spacing: 1px
+  overflow: hidden
+  .title
+    padding: 0 15px
+    background: #f8f8f8
+    border-bottom: 1px solid #eee;
+    height: 40px;
+    line-height: 40px;
+    span
+      font-family: $fontFamily
+      font-size: 17px;
+      color: #333;
+      border-left: 3px solid #c94834;
+      height: 17px;
+      line-height: 17px;
+      padding-left: 10px;
+      letter-spacing: 1px;
   .link-list
-    overflow: hidden
+    padding: 24px 18px 0
+    display: flex
+    flex-wrap: wrap
     .list-item
-      float: left
       background: $bgColor
       color: #fff
-      width: 210px
+      width: 18%
       text-align: center
-      margin-right: 20px
+      margin: 0 20px 18px 0
       border-radius: 3px
-      margin-top: 10px
       height: 28px
       line-height: 28px
       font-family: $fontFamily
@@ -90,6 +97,7 @@ export default {
     font-size: 14px
     color: #888
     font-family: $fontFamily
+    padding: 0 15px 10px
     .show-icon
       font-size: 18px
       margin-right: -4px
