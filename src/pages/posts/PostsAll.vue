@@ -1,16 +1,16 @@
 <template>
   <ul>
-    <li class="content" v-for="item of newsList" :key="item.id">
+    <li class="content" v-for="item of postList" :key="item._id">
       <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
-      <router-link :to="'/admin/posts-edit/' + item.id"><button class="button">编辑</button></router-link>
+      <router-link :to="'/admin/posts-edit/' + item._id"><button class="button">编辑</button></router-link>
       <button class="button">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
         :currentPage="currentPage"
-        :totalPages="12"
-        :total="120"
-        :perPage="12"
+        :totalPages="totalPages"
+        :total="total"
+        :perPage="10"
         @pagechanged="onPageChange"
       >
       </common-pagination>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import CommonPagination from '../common/Pagination'
 export default {
   name: 'Posts',
@@ -27,47 +28,37 @@ export default {
   },
   data () {
     return {
+      postList: [],
       currentPage: 1,
-      newsList: [{
-        id: '0001',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0002',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0003',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0004',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0005',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0006',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0007',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0008',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }]
+      perPage: 10
+    }
+  },
+  computed: {
+    total () {
+      return this.postList.length
+    },
+    totalPages () {
+      return Math.ceil(this.postList.length / 10)
     }
   },
   methods: {
+    getPostInfo () {
+      axios.get('/api/posts')
+        .then(this.handleDataSucc)
+    },
+    handleDataSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.postList = res.postList
+      }
+    },
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
     }
+  },
+  mounted () {
+    this.getPostInfo()
   }
 }
 </script>

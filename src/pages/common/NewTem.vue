@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 export default {
@@ -53,14 +52,7 @@ export default {
       formData.append('postLink', this.postLink)
       formData.append('postImg', this.postImg)
       formData.append('timestamp', this.timestamp)
-      const path = this.$router.currentRoute.path === '/admin/posts-new' ? '/api/posts' : '/api/companies'
-      axios.post(path, formData).then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.$router.push('/')
-      }
+      this.$emit('submit', formData)
     }
   },
   watch: {

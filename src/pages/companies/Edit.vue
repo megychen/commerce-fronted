@@ -2,6 +2,7 @@
   <div>
     <new-template
       :item="company"
+      @submit="handleSubmit"
     >
     </new-template>
   </div>
@@ -29,6 +30,15 @@ export default {
       res = res.data
       if (res.success) {
         this.company = res.company
+      }
+    },
+    handleSubmit (data) {
+      axios.patch('/api/companies/' + this.company._id, data).then(this.handleSubmitSucc)
+    },
+    handleSubmitSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.$router.push('/')
       }
     }
   },
