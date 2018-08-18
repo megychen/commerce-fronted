@@ -12,6 +12,7 @@ import Signup from '@/pages/register/Signup'
 import Signin from '@/pages/register/Signin'
 import Index from '@/pages/index/Index.vue'
 import Intro from '@/pages/intro/Intro.vue'
+import NewsDetail from '@/pages/news/NewsDetail.vue'
 
 Vue.use(Router)
 
