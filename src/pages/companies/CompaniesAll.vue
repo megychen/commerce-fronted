@@ -1,16 +1,16 @@
 <template>
   <ul>
-    <li class="content" v-for="item of companiesList" :key="item.id">
+    <li class="content" v-for="item of companyList" :key="item._id">
       <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
-      <router-link :to="'/admin/companies-edit/' + item.id"><button class="button">编辑</button></router-link>
+      <router-link :to="'/admin/companies-edit/' + item._id"><button class="button">编辑</button></router-link>
       <button class="button">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
         :currentPage="currentPage"
-        :totalPages="12"
-        :total="120"
-        :perPage="12"
+        :totalPages="totalPages"
+        :total="total"
+        :perPage="10"
         @pagechanged="onPageChange"
       >
       </common-pagination>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import CommonPagination from '../common/Pagination'
 export default {
   name: 'Companies',
@@ -27,40 +28,37 @@ export default {
   },
   data () {
     return {
-      companiesList: [{
-        id: '0001',
-        title: '朱孟君：振兴中国压缩机行业的领军者',
-        author: '【秘书处】'
-      }, {
-        id: '0002',
-        title: '传承民族工艺 精耕细作品牌',
-        author: '【张晋洲】'
-      }, {
-        id: '0003',
-        title: '金锦建：商业地产虎山行',
-        author: '【张晋洲】'
-      }, {
-        id: '0004',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0005',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0006',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0007',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }, {
-        id: '0008',
-        title: '代表上海形象 办出上海水平 市合作交流系统社会组织年度工作会议召开',
-        author: '【作者】'
-      }]
+      companyList: [],
+      currentPage: 1,
+      perPage: 10
     }
+  },
+  computed: {
+    total () {
+      return this.companyList.length
+    },
+    totalPages () {
+      return Math.ceil(this.companyList.length / 10)
+    }
+  },
+  methods: {
+    getCompanyInfo () {
+      axios.get('/api/companies')
+        .then(this.handleDataSucc)
+    },
+    handleDataSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.companyList = res.companyList
+      }
+    },
+    onPageChange (page) {
+      console.log(page)
+      this.currentPage = page
+    }
+  },
+  mounted () {
+    this.getCompanyInfo()
   }
 }
 </script>
