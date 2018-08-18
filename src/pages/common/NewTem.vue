@@ -1,14 +1,24 @@
 <template>
   <div>
     <!-- <div class="title">新增商会新闻专题</div> -->
-    <input class="input-title" placeholder="标题..." v-model="title">
-    <input class="input-author" placeholder="作者..." v-model="author">
+    <input class="input input-title" placeholder="标题..." v-model="title">
+    <input class="input input-author" placeholder="作者..." v-model="author">
     <mavonEditor v-model="content"/>
-    <div class="content-submit">提交</div>
+    <input class="input input-link" placeholder="文章链接..." v-model="postLink">
+    <div>
+      <input type="file" class="input input-file" @change="handleFileChange" name="postImg">
+      <span class="img-label">(上传图片)</span>
+    </div>
+    <div>
+      <input type="date" class="input input-date" name="timestamp"  v-model="timestamp">
+      <span class="date-label">(文章日期)</span>
+    </div>
+    <div class="content-submit" @click="handleBtnSubmit">提交</div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 export default {
@@ -16,11 +26,51 @@ export default {
   components: {
     mavonEditor
   },
+  props: {
+    item: {
+      type: Object
+    }
+  },
   data () {
     return {
       title: '',
       author: '',
-      content: ''
+      content: '',
+      postLink: '',
+      postImg: '',
+      timestamp: ''
+    }
+  },
+  methods: {
+    handleFileChange (e) {
+      this.postImg = e.target.files[0]
+    },
+    handleBtnSubmit () {
+      const formData = new FormData()
+      formData.append('title', this.title)
+      formData.append('author', this.author)
+      formData.append('content', this.content)
+      formData.append('postLink', this.postLink)
+      formData.append('postImg', this.postImg)
+      formData.append('timestamp', this.timestamp)
+      const path = this.$router.currentRoute.path === '/admin/posts-new' ? '/api/posts' : '/api/companies'
+      axios.post(path, formData).then(this.handleDataSucc)
+    },
+    handleDataSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.$router.push('/')
+      }
+    }
+  },
+  watch: {
+    item () {
+      this.title = this.item.title
+      this.author = this.item.author
+      this.content = this.item.content
+      this.postLink = this.item.postLink
+      this.postImg = this.item.postImg
+      this.timestamp = this.item.timestamp
     }
   }
 }
@@ -37,27 +87,28 @@ export default {
     font-size: 24px
     color: $fontColor
     margin: 30px 0
-  .input-title
+  .input
     box-sizing: border-box
     border: 1px solid $borderColor
     padding: 10px
-    width: 60%
-    float: left
     margin-bottom: 15px
     box-shadow: $boxShadow
+  .input-title
+    width: 60%
+    float: left
   .input-author
-    box-sizing: border-box
-    border: 1px solid $borderColor
-    padding: 10px
     width: 35%
     float: right
-    box-shadow: $boxShadow
-  .input-content
-    box-sizing: border-box
-    border: 1px solid $borderColor
+  .input-link
     width: 100%
-    margin: 20px 0
-    padding: 10px
+  .img-label
+    color: #666
+  .input-file
+    width: 40%
+  .input-date
+    width: 40%
+  .date-label
+    color: #666
   .content-submit
     background: $bgColor
     width: 100px;

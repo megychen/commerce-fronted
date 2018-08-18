@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Signin',
   data () {
@@ -34,9 +35,31 @@ export default {
     },
     handleBtnSubmit () {
       if (this.validInput()) {
-        console.log('submit')
-        this.$router.push('/')
+        axios.post('http://localhost:3000/api/signin', {
+          name: this.name,
+          password: this.password
+        }).then(this.handleDataSucc)
       }
+    },
+    handleDataSucc (res) {
+      res = res.data
+      if (!res.success) {
+        this.errMsg = res.message
+        return
+      }
+      const cookieVal = {
+        id: res.token.id,
+        name: res.token.name,
+        isAdmin: res.token.isAdmin
+      }
+      this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1M'})
+      this.$router.push('/')
+    }
+  },
+  mounted () {
+    const user = JSON.parse(this.$cookie.get('commerce'))['name']
+    if (user) {
+      this.$router.push('/')
     }
   }
 }
