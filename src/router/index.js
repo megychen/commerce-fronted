@@ -13,6 +13,9 @@ import Signin from '@/pages/register/Signin'
 import Index from '@/pages/index/Index.vue'
 import Intro from '@/pages/intro/Intro.vue'
 import NewsDetail from '@/pages/news/NewsDetail.vue'
+import Entrepreneurs from '@/pages/entrepreneurs/Entrepreneurs'
+import EntrepreneurNew from '@/pages/entrepreneurs/New'
+import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
 
 Vue.use(Router)
 
@@ -39,7 +42,10 @@ export default new Router({
         { path: '/admin/posts-edit/:id', component: PostEdit },
         { path: '/admin/companies', component: Companies },
         { path: '/admin/companies-new', component: CompanyNew },
-        { path: '/admin/companies-edit/:id', component: CompanyEdit }
+        { path: '/admin/companies-edit/:id', component: CompanyEdit },
+        { path: '/admin/entrepreneurs', component: Entrepreneurs },
+        { path: '/admin/entrepreneurs-new', component: EntrepreneurNew },
+        { path: '/admin/entrepreneurs-edit/:id', component: EntrepreneurEdit }
       ]
     }, {
       path: '/signup',
