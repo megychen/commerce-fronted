@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <home-header></home-header>
     <div class="content-wrapper">
       <router-view></router-view>
@@ -21,6 +21,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+.body
+  background: url(../../assets/styles/images/bg.gif)repeat
 </style>
