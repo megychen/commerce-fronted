@@ -24,7 +24,8 @@ export default new Router({
       component: Home,
       children: [
         {path: '/index', component: Index},
-        {path: '/intro', component: Intro}
+        {path: '/intro', component: Intro},
+        {path: '/news', component: NewsDetail}
       ]
     }, {
       path: '/admin',
