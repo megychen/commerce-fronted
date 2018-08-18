@@ -12,6 +12,7 @@ import Signup from '@/pages/register/Signup'
 import Signin from '@/pages/register/Signin'
 import Index from '@/pages/index/Index.vue'
 import Intro from '@/pages/intro/Intro.vue'
+import NewsDetail from '@/pages/news/NewsDetail.vue'
 
 Vue.use(Router)
 
@@ -24,7 +25,8 @@ export default new Router({
       component: Home,
       children: [
         {path: '/index', component: Index},
-        {path: '/intro', component: Intro}
+        {path: '/intro', component: Intro},
+        {path: '/news', component: NewsDetail}
       ]
     }, {
       path: '/admin',
