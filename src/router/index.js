@@ -12,7 +12,7 @@ import Signup from '@/pages/register/Signup'
 import Signin from '@/pages/register/Signin'
 import Index from '@/pages/index/Index.vue'
 import Intro from '@/pages/intro/Intro.vue'
-import NewsDetail from '@/pages/news/NewsDetail.vue'
+import NewsAll from '@/pages/news/NewsAll.vue'
 import Entrepreneurs from '@/pages/entrepreneurs/Entrepreneurs'
 import EntrepreneurNew from '@/pages/entrepreneurs/New'
 import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
@@ -29,7 +29,7 @@ export default new Router({
       children: [
         {path: '/index', component: Index},
         {path: '/intro', component: Intro},
-        {path: '/news', component: NewsDetail}
+        {path: '/news', component: NewsAll}
       ]
     }, {
       path: '/admin',
