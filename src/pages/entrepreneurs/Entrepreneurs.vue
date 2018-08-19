@@ -43,8 +43,12 @@ export default {
   },
   methods: {
     getEntrepreneurInfo () {
-      axios.get('/api/entrepreneurs')
-        .then(this.handleDataSucc)
+      axios.get('/api/entrepreneurs', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleDataSucc (res) {
       res = res.data

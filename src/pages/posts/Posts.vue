@@ -43,8 +43,12 @@ export default {
   },
   methods: {
     getPostInfo () {
-      axios.get('/api/posts')
-        .then(this.handleDataSucc)
+      axios.get('/api/posts', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleDataSucc (res) {
       res = res.data

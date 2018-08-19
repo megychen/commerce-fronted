@@ -43,8 +43,12 @@ export default {
   },
   methods: {
     getCompanyInfo () {
-      axios.get('/api/companies')
-        .then(this.handleDataSucc)
+      axios.get('/api/companies', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleDataSucc (res) {
       res = res.data
