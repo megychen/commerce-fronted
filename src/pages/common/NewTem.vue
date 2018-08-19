@@ -70,6 +70,7 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  @import '~styles/mixins.styl'
   .v-note-wrapper
     clear: both
     min-height: 600px
@@ -80,11 +81,7 @@ export default {
     color: $fontColor
     margin: 30px 0
   .input
-    box-sizing: border-box
-    border: 1px solid $borderColor
-    padding: 10px
-    margin-bottom: 15px
-    box-shadow: $boxShadow
+    inputStyl()
   .input-title
     width: 60%
     float: left
@@ -102,12 +99,5 @@ export default {
   .date-label
     color: #666
   .content-submit
-    background: $bgColor
-    width: 100px;
-    // margin: 0 auto
-    float: right
-    color: #fff
-    text-align: center
-    padding: 10px 0
-    cursor: pointer
+    submitBtn()
 </style>

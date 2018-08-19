@@ -35,7 +35,7 @@ export default {
     },
     handleBtnSubmit () {
       if (this.validInput()) {
-        axios.post('http://localhost:3000/api/signin', {
+        axios.post('/api/signin', {
           name: this.name,
           password: this.password
         }).then(this.handleDataSucc)

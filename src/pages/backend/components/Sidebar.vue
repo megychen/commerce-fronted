@@ -7,11 +7,14 @@
       <router-link to="/admin/companies">
         <div class="side-item border-bottom">企业风采</div>
       </router-link>
-      <div class="side-item">其他</div>
+      <router-link to="/admin/entrepreneurs">
+        <div class="side-item border-bottom">企业家风采</div>
+      </router-link>
     </div>
-    <ul class=" post-item post-menu-content border-top">
+    <ul class=" post-item post-menu-content">
       <router-link to="/admin/posts-new"><li class="border-bottom">新增商会新闻专题</li></router-link>
-      <router-link to="/admin/companies-new"><li>新增企业风采专题</li></router-link>
+      <router-link to="/admin/companies-new"><li class="border-bottom">新增企业专题</li></router-link>
+      <router-link to="/admin/entrepreneurs-new"><li>新增企业家专题</li></router-link>
     </ul>
   </div>
 </template>
