@@ -2,7 +2,7 @@
   <div class="main">
     <home-banner></home-banner>
     <index-news></index-news>
-    <entrepreneur></entrepreneur>
+    <feng-cai></feng-cai>
     <home-friends :linkList="linkList"></home-friends>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import HomeBanner from './components/Banner'
 import HomeFriends from './components/Friends'
 import IndexNews from './components/IndexNews'
-import Entrepreneur from './components/Entrepreneur'
+import FengCai from './components/Fengcai'
 import axios from 'axios'
 
 export default {
@@ -19,7 +19,7 @@ export default {
   components: {
     HomeBanner,
     IndexNews,
-    Entrepreneur,
+    FengCai,
     HomeFriends
   },
   data () {
