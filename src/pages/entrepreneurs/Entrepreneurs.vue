@@ -3,7 +3,7 @@
     <li class="content" v-for="item of entrepreneurList" :key="item._id">
       <router-link to="#"><span class="content-title">{{item.name}}  {{item.title}}</span></router-link>
       <router-link :to="'/admin/entrepreneurs-edit/' + item._id"><button class="button">编辑</button></router-link>
-      <button class="button">删除</button>
+      <button class="button" @click="handleDelBtn(item._id)">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-    getPostInfo () {
+    getEntrepreneurInfo () {
       axios.get('/api/entrepreneurs')
         .then(this.handleDataSucc)
     },
@@ -55,10 +55,20 @@ export default {
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+    },
+    handleDelBtn (id, index) {
+      axios.delete('/api/entrepreneurs/' + id)
+        .then(this.handleDelSucc)
+    },
+    handleDelSucc (res, index) {
+      res = res.data
+      if (res.success) {
+        this.getEntrepreneurInfo()
+      }
     }
   },
   mounted () {
-    this.getPostInfo()
+    this.getEntrepreneurInfo()
   }
 }
 </script>
