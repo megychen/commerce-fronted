@@ -10,7 +10,7 @@
           </p>
           <div class="more">
             <span>{{item.time}}</span>
-            <button><a class="more-text" href="/">查看更多</a></button>
+            <button><a class="more-text" href="/">更多</a></button>
           </div>
         </div>
       </li>
@@ -121,39 +121,46 @@ export default {
         .title
           display: block
           font-family: $fontFamily
-          font-size: 20px
+          font-size: 18px
           font-weight: bold
-          line-height: 38px
-          height: 38px
+          line-height: 40px
+          height: 40px
           color: #666
           letter-spacing : 1px
-          margin-bottom: 12px
+          margin-bottom: 10px
+          &:hover
+            color: $bgColor
         p a
           font-family: $fontFamily
-          font-size: 16px
-          line-height: 26px
+          font-size: 14px
+          line-height: 28px
           color: #666
+          &:hover
+            color: $bgColor
         .more
           overflow: hidden
           margin-top: 14px
           span
            float: left
-           font-size: 16px
+           font-size: 14px
            font-family: $fontFamily
            color: #666
           button
-            display: block;
-            border: 1px solid #888;
-            width: 90px;
-            text-align: center;
-            height: 28px;
-            line-height: 28px;
-            float: right;
-            border-radius: 2px;
+            float: right
             .more-text
-              color: #666
+              color: #888
               font-size: 14px
+              letter-spacing: 1px
               font-family: $fontFamily
+              display: inline-block
+              border: 1px solid #888
+              width: 70px
+              height: 26px
+              line-height: 28px
+              border-radius: 2px
+              &:hover
+               border: 1px solid $bgColor
+               color: $bgColor
     ul .content-pagination
       margin: 20px 0
       padding: 0 30px
