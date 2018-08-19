@@ -95,9 +95,10 @@ export default {
   .show-more
     float: right
     font-size: 14px
-    color: #888
+    color: #c94834
     font-family: $fontFamily
     padding: 0 15px 10px
+    cursor: pointer
     .show-icon
       font-size: 18px
       margin-right: -4px
