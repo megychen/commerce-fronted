@@ -3,7 +3,7 @@
     <li class="content" v-for="item of companyList" :key="item._id">
       <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
       <router-link :to="'/admin/companies-edit/' + item._id"><button class="button">编辑</button></router-link>
-      <button class="button">删除</button>
+      <button class="button" @click="handleDelBtn(item._id)">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
@@ -55,6 +55,16 @@ export default {
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+    },
+    handleDelBtn (id, index) {
+      axios.delete('/api/companies/' + id)
+        .then(this.handleDelSucc)
+    },
+    handleDelSucc (res, index) {
+      res = res.data
+      if (res.success) {
+        this.getCompanyInfo()
+      }
     }
   },
   mounted () {
@@ -78,7 +88,6 @@ export default {
     .button
       background: $bgColor
       padding: 2px 8px
-      border-radius: 4px
       color: #fff
       cursor: pointer
   .content-pagination
