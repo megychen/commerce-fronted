@@ -17,7 +17,11 @@
           </div>
         </div>
         <div class="articles">
-          <posts></posts>
+          <ul>
+            <li class="content" v-for="item of news" :key="item._id">
+              <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -27,12 +31,13 @@
 <script>
 import Img7 from '../../../assets/styles/images/07.jpg'
 import Img8 from '../../../assets/styles/images/08.jpg'
-import Posts from '../../common/Posts'
 
 export default {
   name: 'HomeSwiper',
-  components: {
-    Posts
+  props: {
+    news: {
+      type: Array
+    }
   },
   data () {
     return {
@@ -102,4 +107,27 @@ export default {
           width: 100%
     .articles
       width: 49%
+      ul
+        list-style-type: square
+        list-style-position: inside
+        color: $bgColor
+        letter-spacing: 1px
+        .content
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+            padding: 10px
+            border-bottom: 1px dotted #ccc
+            .content-title
+               color: #666
+            .content-title:hover
+              color: $bgColor
+            .button
+                background: $bgColor
+                padding: 2px 8px
+                color: #fff
+                cursor: pointer
+            .content-pagination
+                margin: 20px 0
+                padding: 0 30px
 </style>

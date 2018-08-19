@@ -6,12 +6,12 @@
         <router-link class="detail" to="/intro">更多</router-link>
       </h2>
       <ul class="content">
-        <li class="member" v-for="item of memberList" :key='item.id' >
-          <a href="/"><img class="pic" :src="item.imgUrl" ></a>
+        <li class="member" v-for="item of entrepreneurs" :key='item.id' >
+          <a href="/"><img class="pic" :src="item.avatar" ></a>
           <a href="/">
             <div class="text">
               <span class="name">{{item.name}}</span>
-              <p class="title">{{item.title}}</p>
+              <p class="title">{{item.company}}</p>
             </div>
           </a>
         </li>
@@ -21,11 +21,11 @@
         <router-link class="detail" to="/intro">更多</router-link>
       </h2>
       <ul class="com-content">
-        <li class="company" v-for="item of comList" :key='item.id' >
-          <a href="/"><img class="com-pic" :src="item.imgUrl" ></a>
+        <li class="company" v-for="item of companies" :key='item.id' >
+          <a href="/"><img class="com-pic" :src="item.postImg" ></a>
           <a href="/">
             <div class="com-intro">
-              <div class="com-name">{{item.name}}</div>
+              <div class="com-name">{{item.title}}</div>
             </div>
           </a>
         </li>
@@ -34,60 +34,14 @@
   </div>
 </template>
 <script>
-import President from '../../../assets/styles/images/president.jpg'
-import MB from '../../../assets/styles/images/MB.jpg'
 export default {
   name: 'Entrepreneur',
-  data () {
-    return {
-      memberList: [{
-        id: '001',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }, {
-        id: '002',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }, {
-        id: '003',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }, {
-        id: '004',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }, {
-        id: '005',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }, {
-        id: '006',
-        imgUrl: President,
-        name: '朱荣平',
-        title: '万丰奥特控股集团有限公司党委书记、董事局主席'
-      }],
-      comList: [{
-        id: '001',
-        imgUrl: MB,
-        name: '美特斯邦威'
-      }, {
-        id: '002',
-        imgUrl: MB,
-        name: '美特斯邦威'
-      }, {
-        id: '003',
-        imgUrl: MB,
-        name: '美特斯邦威'
-      }, {
-        id: '004',
-        imgUrl: MB,
-        name: '美特斯邦威'
-      }]
+  props: {
+    companies: {
+      type: Array
+    },
+    entrepreneurs: {
+      type: Array
     }
   }
 }
