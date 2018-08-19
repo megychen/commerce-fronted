@@ -6,7 +6,16 @@
         <router-link class="detail" to="/intro">更多</router-link>
       </h2>
       <div class="content">
-        <news-img class="swiper"></news-img>
+        <div class="wraper">
+          <div class="swiper">
+            <swiper :options="swiperOption">
+                <swiper-slide v-for="item of swiperList" :key="item.id">
+                  <img class="swip-img" :src="item.imgUrl">
+                </swiper-slide>
+                <div class="swiper-pagination"  slot="pagination"></div>
+            </swiper>
+          </div>
+        </div>
         <div class="articles">
           <posts></posts>
         </div>
@@ -16,19 +25,36 @@
 </template>
 
 <script>
-import NewsImg from '../common/NewsImg'
-import Posts from '../common/Posts'
+import Img7 from '../../../assets/styles/images/07.jpg'
+import Img8 from '../../../assets/styles/images/08.jpg'
+import Posts from '../../common/Posts'
+
 export default {
-  name: 'News',
+  name: 'HomeSwiper',
   components: {
-    NewsImg,
     Posts
+  },
+  data () {
+    return {
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        loop: true
+      },
+      swiperList: [{
+        id: '07',
+        imgUrl: Img7
+      }, {
+        id: '08',
+        imgUrl: Img8
+      }]
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/variables.styl'
+.wraper >>> .swiper-pagination-bullet-active
+  background: #ffffff
 .news
   width: 1200px
   margin: 20px auto
@@ -59,13 +85,20 @@ export default {
         font-size: 14px
         color: #C94834
         font-family: $fontFamily
-    .content
+  .content
       display: flex
       padding: 18px
       justify-content: space-between
+    .wraper
+      width: 49%
       .swiper
-        width: 49%
-      .articles
-        width: 49%
-
+        overflow: hidden
+        width: 100%
+        height: 0
+        padding-bottom: 66%
+        background: #eeeeee
+        .swip-img
+          width: 100%
+    .articles
+      width: 49%
 </style>
