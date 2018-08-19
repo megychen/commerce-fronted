@@ -16,10 +16,11 @@
             </swiper>
           </div>
         </div>
-        <div class="articles">
-          <ul>
-            <li class="content" v-for="item of news" :key="item._id">
-              <router-link :to="'/posts/' + item._id"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
+
+        <div class="posts-wraper">
+          <ul class="posts">
+            <li class="posts-item" v-for="item of news" :key="item._id">
+              <router-link to="#"><span class="posts-title">{{item.title}}  {{item.author}}</span></router-link>
             </li>
           </ul>
         </div>
@@ -105,29 +106,26 @@ export default {
         background: #eeeeee
         .swip-img
           width: 100%
-    .articles
+    .posts-wraper
       width: 49%
-      ul
+      .posts
         list-style-type: square
         list-style-position: inside
         color: $bgColor
         letter-spacing: 1px
-        .content
+        .posts-item
             overflow: hidden
             text-overflow: ellipsis
             white-space: nowrap
             padding: 10px
             border-bottom: 1px dotted #ccc
-            .content-title
+            .posts-title
                color: #666
-            .content-title:hover
+            .posts-title:hover
               color: $bgColor
             .button
                 background: $bgColor
                 padding: 2px 8px
                 color: #fff
                 cursor: pointer
-            .content-pagination
-                margin: 20px 0
-                padding: 0 30px
 </style>
