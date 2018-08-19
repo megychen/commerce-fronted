@@ -79,7 +79,7 @@ export default {
       padding-left: 10px;
       letter-spacing: 1px;
   .link-list
-    padding: 24px 18px 0
+    padding: 20px 18px 0
     display: flex
     flex-wrap: wrap
     .list-item

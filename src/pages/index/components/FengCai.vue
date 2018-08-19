@@ -89,11 +89,13 @@ export default {
         padding-top: 15px
         color: #666
         .name
-          font-size: 17px
+          font-size: 18px
           font-weight: 600
+          font-family: $fontFamily
         .title
           margin: 8px 0
           line-height: 22px
+          font-family: $fontFamily
     .com-content
       padding: 14px 18px
       display: flex
@@ -105,12 +107,12 @@ export default {
         .com-intro
           background: rgba(0, 0, 0, 0.3)
           position: relative
-          top: -30px
+          top: -32px
           .com-name
             color: #EEB345
             font-family: $fontFamily
-            line-height: 30px
-            height: 30px
+            line-height: 32px
+            height: 32px
             text-align: center
             font-size: 16px
 </style>

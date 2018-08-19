@@ -58,6 +58,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~styles/variables.styl'
 .wraper >>> .swiper-pagination-bullet-active
   background: #ffffff
 .news
