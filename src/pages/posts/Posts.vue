@@ -1,9 +1,9 @@
 <template>
   <ul>
-    <li class="content" v-for="(item, index) of postList" :key="item._id">
-      <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
+    <li class="content" v-for="item of postList" :key="item._id">
+      <router-link :to="'/posts/' + item._id"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
       <router-link :to="'/admin/posts-edit/' + item._id"><button class="button">编辑</button></router-link>
-      <button class="button" @click="handleDelBtn(item._id, index)">删除</button>
+      <button class="button" @click="handleDelBtn(item._id)">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
@@ -60,8 +60,7 @@ export default {
       console.log(page)
       this.currentPage = page
     },
-    handleDelBtn (id, index) {
-      console.log(index)
+    handleDelBtn (id) {
       axios.delete('/api/posts/' + id)
         .then(this.handleDelSucc)
     },

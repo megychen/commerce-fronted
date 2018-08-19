@@ -1,0 +1,76 @@
+<template>
+  <div class="content-wrapper">
+    <div class="detail-title">{{entrepreneur.name}}</div>
+    <div class="subtitle">
+      {{entrepreneur.company}} ({{entrepreneur.title}})
+    </div>
+    <div class="avatar"><img class="image" :src="entrepreneur.avatar"></div>
+    <div class="content" v-html="compiledMarkdown"></div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import marked from 'marked'
+export default {
+  name: 'EntrepreneurDetail',
+  components: {
+    marked
+  },
+  data () {
+    return {
+      entrepreneur: ''
+    }
+  },
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.entrepreneur.description || '', { sanitize: true })
+    }
+  },
+  methods: {
+    getPostInfo () {
+      axios.get('/api/entrepreneurs/' + this.$route.params.id)
+        .then(this.handleDataSucc)
+    },
+    handleDataSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.entrepreneur = res.entrepreneur
+      }
+    }
+  },
+  mounted () {
+    this.getPostInfo()
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  @import '~styles/variables.styl'
+  .content-wrapper
+    width: 1024px
+    margin: 20px auto
+    padding: 20px
+    background: #fff
+    color: #666
+    .detail-title
+      line-height: 60px
+      text-align: center
+      font-size: 20px
+      letter-spacing: 2px
+    .subtitle
+      text-align: center
+      font-weight: bold
+    .avatar
+      width: 300px
+      height: 350px
+      margin: 20px auto
+      overflow-y: hidden
+      border: 4px solid $borderColor
+      .image
+        width: 100%
+    .content
+      padding: 30px 100px
+      line-height: 30px
+      text-align: justify;
+</style>

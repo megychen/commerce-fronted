@@ -17,6 +17,10 @@ import Entrepreneurs from '@/pages/entrepreneurs/Entrepreneurs'
 import EntrepreneurNew from '@/pages/entrepreneurs/New'
 import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
 
+import PostDetail from '@/pages/detail/Post'
+import CompanyDetail from '@/pages/detail/Company'
+import EntrepreneurDetail from '@/pages/detail/Entrepreneur'
+
 Vue.use(Router)
 
 export default new Router({
@@ -29,7 +33,10 @@ export default new Router({
       children: [
         {path: '/index', component: Index},
         {path: '/intro', component: Intro},
-        {path: '/news', component: NewsAll}
+        {path: '/news', component: NewsAll},
+        {path: '/posts/:id', component: PostDetail},
+        {path: '/companies/:id', component: CompanyDetail},
+        {path: 'entrepreneurs/:id', component: EntrepreneurDetail}
       ]
     }, {
       path: '/admin',

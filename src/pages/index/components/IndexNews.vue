@@ -19,7 +19,7 @@
         <div class="articles">
           <ul>
             <li class="content" v-for="item of news" :key="item._id">
-              <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
+              <router-link :to="'/posts/' + item._id"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
             </li>
           </ul>
         </div>

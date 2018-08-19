@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li class="content" v-for="item of companyList" :key="item._id">
-      <router-link to="#"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
+      <router-link :to="'/companies/' + item._id"><span class="content-title">{{item.title}}  {{item.author}}</span></router-link>
       <router-link :to="'/admin/companies-edit/' + item._id"><button class="button">编辑</button></router-link>
       <button class="button" @click="handleDelBtn(item._id)">删除</button>
     </li>
