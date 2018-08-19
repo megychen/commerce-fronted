@@ -1,7 +1,8 @@
 <template>
   <div class="main">
     <home-banner></home-banner>
-    <news></news>
+    <index-news></index-news>
+    <entrepreneur></entrepreneur>
     <home-friends :linkList="linkList"></home-friends>
   </div>
 </template>
@@ -9,14 +10,16 @@
 <script>
 import HomeBanner from './components/Banner'
 import HomeFriends from './components/Friends'
-import News from '../news/News'
+import IndexNews from './components/IndexNews'
+import Entrepreneur from './components/Entrepreneur'
 import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
     HomeBanner,
-    News,
+    IndexNews,
+    Entrepreneur,
     HomeFriends
   },
   data () {
