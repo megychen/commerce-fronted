@@ -7,8 +7,8 @@
       </h2>
       <ul class="content">
         <li class="member" v-for="item of entrepreneurs" :key='item.id' >
-          <a class="pic-wraper" href="/"><img class="pic" :src="item.avatar" ></a>
-          <a href="/">
+          <a class="pic-wraper" :href="'/#/entrepreneurs/' + item._id"><img class="pic" :src="item.avatar" ></a>
+          <a :href="'/#/entrepreneurs/' + item._id">
             <div class="text">
               <span class="name">{{item.name}}</span>
               <p class="title">{{item.company}}</p>
@@ -22,8 +22,8 @@
       </h2>
       <ul class="com-content">
         <li class="company" v-for="item of companies" :key='item.id' >
-          <a class="compic-wraper" href="/"><img class="com-pic" :src="item.postImg" ></a>
-          <a href="/">
+          <a class="compic-wraper" :href="'/#/companies/' + item._id"><img class="com-pic" :src="item.postImg" ></a>
+          <a :href="'/#/companies/' + item._id">
             <div class="com-intro">
               <div class="com-name">{{item.title}}</div>
             </div>

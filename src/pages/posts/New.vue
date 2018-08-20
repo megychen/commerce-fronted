@@ -19,7 +19,7 @@ export default {
     handleDataSucc (res) {
       res = res.data
       if (res.success) {
-        this.$router.push('/')
+        this.$router.push('/admin/posts')
       }
     }
   }

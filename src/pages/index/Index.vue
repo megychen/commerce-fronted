@@ -45,7 +45,7 @@ export default {
       axios.get('/api/posts', {
         params: {
           pageNo: 1,
-          pageSize: 8
+          pageSize: 10
         }
       }).then(this.handlePostsDataSucc)
 
