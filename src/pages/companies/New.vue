@@ -1,6 +1,6 @@
 <template>
   <div>
-    <new-template @submit="handleSubmit"></new-template>
+    <new-template @submit="handleSubmit" @addImg="handleUploadImg"></new-template>
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import axios from 'axios'
 import NewTemplate from '../common/NewTem'
 export default {
   name: 'CompanyNew',
+  data () {
+    return {
+      pos: 0
+    }
+  },
   components: {
     NewTemplate
   },
@@ -20,6 +25,17 @@ export default {
       res = res.data
       if (res.success) {
         this.$router.push('/')
+      }
+    },
+    handleUploadImg (data, pos) {
+      this.pos = pos
+      axios.post('/api/image', data)
+        .then(this.handleUploadImgSucc)
+    },
+    handleUploadImgSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.filePath = res.filePath
       }
     }
   }

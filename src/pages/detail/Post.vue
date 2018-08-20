@@ -47,6 +47,8 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  img
+    border: 1px solid red
   .content-wrapper
     width: 1024px
     margin: 20px auto
@@ -66,5 +68,4 @@ export default {
     .content
       padding: 30px 100px
       line-height: 30px
-      text-align: justify;
 </style>

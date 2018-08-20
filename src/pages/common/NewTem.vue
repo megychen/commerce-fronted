@@ -3,7 +3,7 @@
     <!-- <div class="title">新增商会新闻专题</div> -->
     <input class="input input-title" placeholder="标题..." v-model="title">
     <input class="input input-author" placeholder="作者..." v-model="author">
-    <mavonEditor v-model="content"/>
+    <mavonEditor v-model="content" ref="md"  @imgAdd="handleAddImg"/>
     <input class="input input-link" placeholder="文章链接..." v-model="postLink">
     <div>
       <input type="file" class="input input-file" @change="handleFileChange" name="postImg">
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 export default {
@@ -37,12 +38,26 @@ export default {
       content: '',
       postLink: '',
       postImg: '',
-      timestamp: ''
+      timestamp: '',
+      pos: 0
     }
   },
   methods: {
     handleFileChange (e) {
       this.postImg = e.target.files[0]
+    },
+    handleAddImg (pos, file) {
+      const formData = new FormData()
+      formData.append('imgFile', file)
+      this.pos = pos
+      axios.post('/api/image', formData)
+        .then(this.handleUploadImgSucc)
+    },
+    handleUploadImgSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.$refs.md.$img2Url(this.pos, res.filePath)
+      }
     },
     handleBtnSubmit () {
       const formData = new FormData()

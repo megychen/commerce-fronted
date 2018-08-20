@@ -13,12 +13,14 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://9303.megychen.info:8080',
+        changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
       '/uploads': {
         target: 'http://9303.megychen.info:8080',
+        changeOrigin: true,
         pathRewrite: {
           '^/uploads': '/uploads'
         }
