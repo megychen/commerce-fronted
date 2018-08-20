@@ -10,6 +10,9 @@
       <span class="img-label">(上传图片)</span>
     </div>
     <div class="content-submit" @click="handleBtnSubmit">提交</div>
+    <ul class="content-error">
+      <li class="error-item" v-for="(error, index) of errors" :key="index">{{error}}</li>
+    </ul>
   </div>
 </template>
 
@@ -34,10 +37,33 @@ export default {
       company: '',
       description: '',
       avatar: '',
-      pos: 0
+      pos: 0,
+      errors: []
     }
   },
   methods: {
+    checkForm () {
+      this.errors = []
+      if (this.name && this.title && this.company && this.avatar) {
+        return true
+      }
+
+      if (!this.name) {
+        this.errors.push('缺少企业家名称')
+      }
+
+      if (!this.title) {
+        this.errors.push('缺少企业家商会头衔')
+      }
+
+      if (!this.company) {
+        this.errors.push('缺少企业家公司名称')
+      }
+
+      if (!this.avatar) {
+        this.errors.push('缺少企业家图片')
+      }
+    },
     handleFileChange (e) {
       this.avatar = e.target.files[0]
     },
@@ -55,13 +81,15 @@ export default {
       }
     },
     handleBtnSubmit () {
-      const formData = new FormData()
-      formData.append('name', this.name)
-      formData.append('title', this.title)
-      formData.append('company', this.company)
-      formData.append('description', this.description)
-      formData.append('avatar', this.avatar)
-      this.$emit('submit', formData)
+      if (this.checkForm()) {
+        const formData = new FormData()
+        formData.append('name', this.name)
+        formData.append('title', this.title)
+        formData.append('company', this.company)
+        formData.append('description', this.description)
+        formData.append('avatar', this.avatar)
+        this.$emit('submit', formData)
+      }
     }
   },
   watch: {
@@ -105,4 +133,11 @@ export default {
     width: 40%
   .content-submit
     submitBtn()
+  .content-error
+    margin-top: 10px
+    list-style-type: square
+    list-style-position: inside
+    .error-item
+      margin-top: 10px
+      color: #ff3333
 </style>
