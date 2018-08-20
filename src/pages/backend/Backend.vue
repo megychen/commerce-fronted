@@ -1,11 +1,13 @@
 <template>
-  <div class="wrapper">
+  <div class="main-page">
     <backend-header></backend-header>
-    <sidebar></sidebar>
-    <div class="content-wrapper">
-      <router-view></router-view>
+    <div class="wrapper">
+      <sidebar></sidebar>
+      <div class="content-wrapper">
+        <router-view></router-view>
+      </div>
+      <div class="clear"></div>
     </div>
-    <div class="clear"></div>
   </div>
 </template>
 
@@ -22,17 +24,21 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .wrapper
-    width: 1024px
-    margin: 20px auto
-    border: 1px solid #eaeaea
-    padding: 20px
-    .content-wrapper
-      box-sizing: border-box
-      float: right
-      width: 78%
-      padding: 0 20px
-      border: 1px solid $borderColor
-    .clear
-      clear: both
+  .main-page
+    background: url(../../assets/styles/images/bg.gif)repeat
+    padding: 30px
+    .wrapper
+      width: 1024px
+      margin: 20px auto
+      border: 1px solid #eaeaea
+      padding: 20px
+      background: #fff
+      .content-wrapper
+        box-sizing: border-box
+        float: right
+        width: 78%
+        padding: 0 20px
+        border: 1px solid $borderColor
+      .clear
+        clear: both
 </style>

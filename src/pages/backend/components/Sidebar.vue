@@ -36,6 +36,9 @@ export default {
       font-size: 16px
       border: 1px solid $borderColor
       margin-bottom: 30px
+      .active
+        background: $bgColor
+        color: #fff
       .side-item
         text-align: center
         padding: 10px
