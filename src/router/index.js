@@ -48,7 +48,7 @@ export default new Router({
         },
         {path: '/posts/:id', component: PostDetail},
         {path: '/companies/:id', component: CompanyDetail},
-        {path: 'entrepreneurs/:id', component: EntrepreneurDetail}
+        {path: '/entrepreneurs/:id', component: EntrepreneurDetail}
       ]
     }, {
       path: '/admin',

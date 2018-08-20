@@ -13,7 +13,10 @@
             <a href="/">{{item.description.substr(0, 70) }}... </a>
           </p>
           <div class="more">
-            <button><a class="more-text" href="/">更多</a></button>
+            <button>
+              <a v-if="item.postLink" class="more-text" :href="item.postLink">更多</a>
+              <a v-else class="more-text" :href="'/#/entrepreneurs/' + item._id">更多</a>
+            </button>
           </div>
         </div>
       </li>
@@ -60,6 +63,7 @@ export default {
       }).then(this.handlePostsDataSucc)
     },
     handlePostsDataSucc (res) {
+      console.log(res)
       res = res.data
       if (res.success) {
         this.postList = res.entrepreneurList
