@@ -20,7 +20,9 @@ import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
 import PostDetail from '@/pages/detail/Post'
 import CompanyDetail from '@/pages/detail/Company'
 import EntrepreneurDetail from '@/pages/detail/Entrepreneur'
-import FengCai from '@/pages/FengCai/FengCai'
+import FengCai from '@/pages/fengcai/FengCai'
+import ComFengcai from '@/pages/fengcai/components/Company'
+import EntFengcai from '@/pages/fengcai/components/Entrepreneur'
 
 Vue.use(Router)
 
@@ -35,10 +37,18 @@ export default new Router({
         {path: '/index', component: Index},
         {path: '/intro', component: Intro},
         {path: '/news', component: NewsAll},
-        {path: '/FengCai', component: FengCai},
+        {
+          path: '/fengcai',
+          component: FengCai,
+          redirect: '/fengcai/entrepreneurs',
+          children: [
+            {path: '/fengcai/entrepreneurs', component: EntFengcai},
+            {path: '/fengcai/companies', component: ComFengcai}
+          ]
+        },
         {path: '/posts/:id', component: PostDetail},
         {path: '/companies/:id', component: CompanyDetail},
-        {path: 'entrepreneurs/:id', component: EntrepreneurDetail}
+        {path: '/entrepreneurs/:id', component: EntrepreneurDetail}
       ]
     }, {
       path: '/admin',
