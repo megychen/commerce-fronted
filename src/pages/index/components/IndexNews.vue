@@ -9,8 +9,8 @@
         <div class="wraper">
           <div class="swiper">
             <swiper :options="swiperOption">
-                <swiper-slide v-for="item of swiperList" :key="item.id">
-                  <img class="swip-img" :src="item.imgUrl">
+                <swiper-slide v-for="(item, index) of swiperList" :key="index">
+                  <img class="swip-img" :src="item">
                 </swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>
             </swiper>
@@ -20,7 +20,8 @@
         <div class="posts-wraper">
           <ul class="posts">
             <li class="posts-item" v-for="item of news" :key="item._id">
-              <router-link to="#"><span class="posts-title">{{item.title}}  {{item.author}}</span></router-link>
+              <a v-if="item.postLink" class="posts-title" :href="item.postLink">{{item.title}}</a>
+              <a v-else class="posts-title" :href="'/#/posts/' + item._id">{{item.title}}</a>
             </li>
           </ul>
         </div>
@@ -30,8 +31,6 @@
 </template>
 
 <script>
-import Img7 from '../../../assets/styles/images/07.jpg'
-import Img8 from '../../../assets/styles/images/08.jpg'
 
 export default {
   name: 'HomeSwiper',
@@ -45,14 +44,16 @@ export default {
       swiperOption: {
         pagination: '.swiper-pagination',
         loop: true
-      },
-      swiperList: [{
-        id: '07',
-        imgUrl: Img7
-      }, {
-        id: '08',
-        imgUrl: Img8
-      }]
+      }
+    }
+  },
+  computed: {
+    swiperList () {
+      let images = []
+      for (let i = 0; i < this.news.length; i++) {
+        images.push(this.news[i]['postImg'])
+      }
+      return images
     }
   }
 }

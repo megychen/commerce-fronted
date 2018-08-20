@@ -4,13 +4,17 @@
       <li v-for="item of postList" :key="item.id">
         <a class="cover" href="/"><img class="pic" :src="item.postImg"></a>
         <div class="text">
-          <a class="title" href="/">{{item.title}}</a>
+          <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
+          <a v-else class="title" :href="'/#/posts/' + item._id">{{item.title}}</a>
           <p>
             <a href="/">{{item.content.substr(0, 70) }}... </a>
           </p>
           <div class="more">
             <span>{{item.timestamp}}</span>
-            <button><a class="more-text" href="/">更多</a></button>
+            <button>
+              <a v-if="item.postLink" class="more-text" :href="item.postLink">更多</a>
+              <a v-else class="more-text" :href="'/#/posts/' + item._id">更多</a>
+            </button>
           </div>
         </div>
       </li>
