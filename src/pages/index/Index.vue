@@ -64,6 +64,7 @@ export default {
       }).then(this.handleCompaniesDataSucc)
     },
     handlePostsDataSucc (res) {
+      console.log(res)
       res = res.data
       if (res.success) {
         this.postList = res.postList

@@ -57,6 +57,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~styles/variables.styl'
+@import '~styles/mixins.styl'
 .friends
   background: #fff
   margin-top: 15px
@@ -92,6 +93,7 @@ export default {
       height: 28px
       line-height: 28px
       font-family: $fontFamily
+      ellipsis()
   .show-more
     float: right
     font-size: 14px

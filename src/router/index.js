@@ -20,6 +20,7 @@ import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
 import PostDetail from '@/pages/detail/Post'
 import CompanyDetail from '@/pages/detail/Company'
 import EntrepreneurDetail from '@/pages/detail/Entrepreneur'
+import FengCai from '@/pages/FengCai/FengCai'
 
 Vue.use(Router)
 
@@ -34,6 +35,7 @@ export default new Router({
         {path: '/index', component: Index},
         {path: '/intro', component: Intro},
         {path: '/news', component: NewsAll},
+        {path: '/FengCai', component: FengCai},
         {path: '/posts/:id', component: PostDetail},
         {path: '/companies/:id', component: CompanyDetail},
         {path: 'entrepreneurs/:id', component: EntrepreneurDetail}
