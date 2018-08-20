@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~styles/mixins.styl'
 @import '~styles/variables.styl'
 .wraper >>> .swiper-pagination-bullet-active
   background: #ffffff
@@ -121,6 +122,7 @@ export default {
             border-bottom: 1px dotted #ccc
             .posts-title
                color: #666
+               ellipsis()
             .posts-title:hover
               color: $bgColor
             .button

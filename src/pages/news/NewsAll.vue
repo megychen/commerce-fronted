@@ -2,14 +2,14 @@
   <div class="content">
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
-        <a class="cover" href="/"><img class="pic" :src="item.imgUrl"></a>
+        <a class="cover" href="/"><img class="pic" :src="item.postImg"></a>
         <div class="text">
           <a class="title" href="/">{{item.title}}</a>
           <p>
-            <a href="/">{{item.text}}</a>
+            <a href="/">{{item.content.substr(0, 70) }}... </a>
           </p>
           <div class="more">
-            <span>{{item.time}}</span>
+            <span>{{item.timestamp}}</span>
             <button><a class="more-text" href="/">更多</a></button>
           </div>
         </div>
@@ -29,54 +29,38 @@
 </template>
 
 <script>
-import President from '../../assets/styles/images/president2.jpg'
 import CommonPagination from '../common/Pagination'
+import axios from 'axios'
 export default {
-  name: 'NewsDetail',
+  name: 'NewsAll',
   components: {
     CommonPagination
   },
   data () {
     return {
-      postList: [{
-        id: '001',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }, {
-        id: '002',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }, {
-        id: '003',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }, {
-        id: '004',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }, {
-        id: '005',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }, {
-        id: '006',
-        imgUrl: President,
-        title: '林奇：游族网络将一如既往创造经典，创造下一个辉煌',
-        text: '与绝大多数企业家相比，上海市浙江商会副会长、游族网络董事长兼CEO林奇更早地看到了创业所能带来的荣耀与财富。几乎在一年之内，光环与成功都在一张稚气未全部消逝的脸上找到了落脚之处...',
-        time: '时间：2018-08-07'
-      }],
       currentPage: 1,
-      perPage: 10
+      perPage: 10,
+      postList: []
+    }
+  },
+  methods: {
+    onPageChange (page) {
+      console.log(page)
+      this.currentPage = page
+    },
+    getPostsData () {
+      axios.get('/api/posts', {
+        params: {
+          pageNo: 1,
+          pageSize: 8
+        }
+      }).then(this.handlePostsDataSucc)
+    },
+    handlePostsDataSucc (res) {
+      res = res.data
+      if (res.success) {
+        this.postList = res.postList
+      }
     }
   },
   computed: {
@@ -87,17 +71,15 @@ export default {
       return Math.ceil(this.postList.length / 10)
     }
   },
-  methods: {
-    onPageChange (page) {
-      console.log(page)
-      this.currentPage = page
-    }
+  mounted () {
+    this.getPostsData()
   }
 }
 </script>
 
 <style lang="stylus" scoped>
  @import '~styles/variables.styl'
+ @import '~styles/mixins.styl'
 .content
   width: 1024px
   margin: 0 auto
