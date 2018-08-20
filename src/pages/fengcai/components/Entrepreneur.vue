@@ -8,9 +8,11 @@
           </div>
         </a>
         <div class="text">
-          <a class="title" href="/">{{item.name + "   " + "  " + item.company}}</a>
+          <a class="title" v-if="item.postLink" :href="item.postLink">{{item.name + "   " + "  " + item.company}}</a>
+          <a class="title" v-else :href="'/#/entrepreneurs/' + item._id">{{item.name + "   " + "  " + item.company}}</a>
           <p>
-            <a href="/">{{item.description.substr(0, 70) }}... </a>
+            <a v-if="item.postLink" :href="item.postLink">{{item.description.substr(0, 150) }}... </a>
+            <a v-else :href="'/#/entrepreneurs/' + item._id">{{item.description.substr(0, 150) }}... </a>
           </p>
           <div class="more">
             <button>

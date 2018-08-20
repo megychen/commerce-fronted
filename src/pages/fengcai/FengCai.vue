@@ -35,9 +35,8 @@ export default {
     padding: 18px 0
     .side-bar
       width: 14%
-      margin-top: 200px
+      margin-top: 150px
     .fc-content
       width: 82%
       background: #aaa
-      // height: 600px
 </style>

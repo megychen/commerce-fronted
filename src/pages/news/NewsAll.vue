@@ -7,7 +7,8 @@
           <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
           <a v-else class="title" :href="'/#/posts/' + item._id">{{item.title}}</a>
           <p>
-            <a href="/">{{item.content.substr(0, 70) }}... </a>
+            <a v-if="item.postLink" :href="item.postLink">{{item.content.substr(0, 90)}}... </a>
+            <a v-else :href="'/#/posts/' + item._id">{{item.content.substr(0, 90)}}... </a>
           </p>
           <div class="more">
             <span>{{item.timestamp}}</span>
@@ -114,6 +115,7 @@ export default {
           color: #666
           letter-spacing : 1px
           margin-bottom: 10px
+          ellipsis()
           &:hover
             color: $bgColor
         p a

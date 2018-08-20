@@ -27,10 +27,9 @@ export default {
       .side-item
         padding: 10px;
         color: #fff
-        line-height: 50px
-        font-size: 22px
+        line-height: 38px
+        font-size: 18px
         font-family: $fontFamily
-
         &:hover
           background: #fff
           color: $bgColor
