@@ -8,6 +8,10 @@
     <div>
       <input type="file" class="input input-file" @change="handleFileChange" name="postImg" required>
       <span class="img-label">(上传封面图片)</span>
+      <div class="current-image" v-if="postImg">
+        目前封面图
+        <img class="image" :src="currentImg">
+      </div>
     </div>
     <div>
       <input type="date" class="input input-date" name="timestamp"  v-model="timestamp" required>
@@ -41,6 +45,7 @@ export default {
       content: '',
       postLink: '',
       postImg: '',
+      currentImg: '',
       timestamp: '',
       pos: 0,
       errors: []
@@ -93,6 +98,7 @@ export default {
         formData.append('content', this.content)
         formData.append('postLink', this.postLink)
         formData.append('postImg', this.postImg)
+        formData.append('currentImg', this.currentImg)
         formData.append('timestamp', this.timestamp)
         this.$emit('submit', formData)
       }
@@ -104,6 +110,7 @@ export default {
       this.author = this.item.author
       this.content = this.item.content
       this.postLink = this.item.postLink
+      this.currentImg = this.item.postImg
       this.postImg = this.item.postImg
       this.timestamp = this.item.timestamp
     }
@@ -137,6 +144,13 @@ export default {
     color: #666
   .input-file
     width: 40%
+  .current-image
+    width: 200px
+    margin: 20px 0
+    .image
+      margin-top: 5px
+      width: 100%
+      border: 1px solid $borderColor
   .input-date
     width: 40%
   .date-label

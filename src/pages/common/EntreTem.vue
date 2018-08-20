@@ -8,6 +8,10 @@
     <div>
       <input type="file" class="input input-file" @change="handleFileChange" name="avatar">
       <span class="img-label">(上传图片)</span>
+      <div class="current-image" v-if="avatar">
+        目前封面图
+        <img class="image" :src="avatar">
+      </div>
     </div>
     <div class="content-submit" @click="handleBtnSubmit">提交</div>
     <ul class="content-error">
@@ -37,6 +41,7 @@ export default {
       company: '',
       description: '',
       avatar: '',
+      currentImg: '',
       pos: 0,
       errors: []
     }
@@ -88,6 +93,7 @@ export default {
         formData.append('company', this.company)
         formData.append('description', this.description)
         formData.append('avatar', this.avatar)
+        formData.append('currentImg', this.currentImg)
         this.$emit('submit', formData)
       }
     }
@@ -99,6 +105,7 @@ export default {
       this.company = this.item.company
       this.description = this.item.description
       this.avatar = this.item.avatar
+      this.currentImg = this.item.avatar
     }
   }
 }
@@ -131,6 +138,13 @@ export default {
     color: #666
   .input-file
     width: 40%
+  .current-image
+    width: 200px
+    margin: 20px 0
+    .image
+      margin-top: 5px
+      width: 100%
+      border: 1px solid $borderColor
   .content-submit
     submitBtn()
   .content-error
