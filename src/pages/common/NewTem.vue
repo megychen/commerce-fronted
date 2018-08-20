@@ -3,8 +3,14 @@
     <!-- <div class="title">新增商会新闻专题</div> -->
     <input class="input input-title" placeholder="标题..." required v-model="title">
     <input class="input input-author" placeholder="作者..." v-model="author">
-    <mavonEditor v-model="content" ref="md"  @imgAdd="handleAddImg"/>
-    <input class="input input-link" placeholder="文章链接..." v-model="postLink">
+    <button class="change-text" @click="handleTextChange">{{type}}</button>
+    <template v-if="link === 'link'">
+      <input class="input input-link" placeholder="文章链接..." v-model="postLink">
+      <textarea class="input input-description" placeholder="文章简介..." rows="5" v-model="content"></textarea>
+    </template>
+    <template v-else>
+      <mavonEditor v-model="content" ref="md"  @imgAdd="handleAddImg"/>
+    </template>
     <div>
       <input type="file" class="input input-file" @change="handleFileChange" name="postImg" required>
       <span class="img-label">(上传封面图片)</span>
@@ -48,7 +54,13 @@ export default {
       currentImg: '',
       timestamp: '',
       pos: 0,
-      errors: []
+      errors: [],
+      link: 'link'
+    }
+  },
+  computed: {
+    type () {
+      return this.link === 'link' ? '切换至文章内容编辑模式' : '切换至文章链接编辑模式'
     }
   },
   methods: {
@@ -73,6 +85,9 @@ export default {
       if (!this.postImg) {
         this.errors.push('缺少文章封面图')
       }
+    },
+    handleTextChange () {
+      this.link = this.link === 'link' ? 'content' : 'link'
     },
     handleFileChange (e) {
       this.postImg = e.target.files[0]
@@ -138,7 +153,18 @@ export default {
   .input-author
     width: 35%
     float: right
+  .change-text
+    border: 1px solid $borderColor
+    padding: 5px 20px
+    margin-bottom: 15px
+    cursor: pointer
+    color: $fontColor
+    &:hover
+      background: $bgColor
+      color: #fff
   .input-link
+    width: 100%
+  .input-description
     width: 100%
   .img-label
     color: #666
