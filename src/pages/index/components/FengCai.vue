@@ -7,7 +7,7 @@
       </h2>
       <ul class="content">
         <li class="member" v-for="item of entrepreneurs" :key='item.id' >
-          <a href="/"><img class="pic" :src="item.avatar" ></a>
+          <a class="pic-wraper" href="/"><img class="pic" :src="item.avatar" ></a>
           <a href="/">
             <div class="text">
               <span class="name">{{item.name}}</span>
@@ -22,7 +22,7 @@
       </h2>
       <ul class="com-content">
         <li class="company" v-for="item of companies" :key='item.id' >
-          <a href="/"><img class="com-pic" :src="item.postImg" ></a>
+          <a class="compic-wraper" href="/"><img class="com-pic" :src="item.postImg" ></a>
           <a href="/">
             <div class="com-intro">
               <div class="com-name">{{item.title}}</div>
@@ -83,10 +83,17 @@ export default {
       justify-content: space-between
       .member
         width: 16%
-        .pic
+        .pic-wraper
+          background: #eee
+          display: inline-block
           width: 100%
+          height: 0
+          padding-bottom: 100%;
+          overflow hidden
+          .pic
+            width: 100%
       .text
-        padding-top: 15px
+        padding: 20px 10px 0
         color: #666
         .name
           font-size: 18px
@@ -102,12 +109,18 @@ export default {
       justify-content: space-around
       .company
         width: 24%
-        .com-pic
+        .compic-wraper
+          display: inline-block
           width: 100%
+          height: 0
+          padding-bottom: 66.67%
+          overflow: hidden
+          .com-pic
+            width: 100%
         .com-intro
           background: rgba(0, 0, 0, 0.3)
           position: relative
-          top: -32px
+          top: -34px
           .com-name
             color: #EEB345
             font-family: $fontFamily
