@@ -26,7 +26,7 @@ export default {
 <style lang="stylus" scoped>
   .main-page
     background: url(../../assets/styles/images/bg.gif)repeat
-    padding: 30px
+    padding-bottom: 30px
     .wrapper
       width: 1024px
       margin: 20px auto
