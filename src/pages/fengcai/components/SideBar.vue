@@ -19,6 +19,8 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  .side-wraper >>> router-link-active
+     background: #fff
     .side-menu
       background: $bgColor
       color: #fff
