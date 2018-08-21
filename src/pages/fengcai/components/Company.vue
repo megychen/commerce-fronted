@@ -15,10 +15,10 @@
             <a v-else :href="'/#/companies/' + item._id">{{item.content.substr(0, 90) }}... </a>
           </p>
           <div class="more">
-            <button>
+            <div class="btn">
               <a v-if="item.postLink" class="more-text" :href="item.postLink">更多</a>
               <a v-else class="more-text" :href="'/#/companies/' + item._id">更多</a>
-            </button>
+            </div>
           </div>
         </div>
       </li>
@@ -139,8 +139,9 @@ export default {
            font-size: 14px
            font-family: $fontFamily
            color: #666
-          button
+          .btn
             float: right
+            text-align: center
             .more-text
               color: #888
               font-size: 14px

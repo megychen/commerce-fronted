@@ -1,7 +1,7 @@
 <template>
   <div class="side-wrapper">
     <div class="side-menu">
-      <router-link to="/fengcai/entrepreneurs">
+      <router-link  to="/fengcai/entrepreneurs">
         <div class="side-item border-bottom">会员风采</div>
       </router-link>
       <router-link to="/fengcai/companies">
@@ -19,18 +19,22 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
-    .side-menu
+  .side-menu >>> .router-link-active
+    .side-item
       background: $bgColor
       color: #fff
+      line-height: 50px
+      font-size: 18px
       text-align: center
       border-radius: 3px
-      .side-item
-        padding: 10px;
-        color: #fff
-        line-height: 38px
-        font-size: 18px
-        font-family: $fontFamily
-        &:hover
-          background: #fff
-          color: $bgColor
+      font-family: $fontFamily
+  .side-item
+    background: rgba(0, 0, 0, 0.2)
+    color: #fff
+    text-align: center
+    line-height: 50px
+    font-size: 18px
+    text-align: center
+    border-radius: 3px
+    font-family: $fontFamily
 </style>

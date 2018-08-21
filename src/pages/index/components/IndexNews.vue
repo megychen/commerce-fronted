@@ -104,7 +104,7 @@ export default {
         overflow: hidden
         width: 100%
         height: 0
-        padding-bottom: 66%
+        padding-bottom: 66.67%
         background: #eeeeee
         .swip-img
           width: 100%
@@ -116,16 +116,14 @@ export default {
         color: $bgColor
         letter-spacing: 1px
         .posts-item
-            overflow: hidden
-            text-overflow: ellipsis
-            white-space: nowrap
             padding: 10px
             border-bottom: 1px dotted #ccc
-            .posts-title
-               color: #666
-               ellipsis()
-            .posts-title:hover
-              color: $bgColor
+            line-height: 16px
+            ellipsis()
+          .posts-title
+              color: #666
+          .posts-title:hover
+            color: $bgColor
             .button
                 background: $bgColor
                 padding: 2px 8px

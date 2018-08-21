@@ -47,6 +47,18 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  .content-wrapper >>> p
+    font-family: $fontFamily
+    line-height: 26px;
+    text-indent: 34px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 5px 0;
+    white-space: wrap
+  .content-wrapper >>> img
+    display: block
+    width: 500px
+    margin: 0 auto
   img
     border: 1px solid red
   .content-wrapper
@@ -67,5 +79,4 @@ export default {
         font-weight: bold
     .content
       padding: 30px 100px
-      line-height: 30px
 </style>
