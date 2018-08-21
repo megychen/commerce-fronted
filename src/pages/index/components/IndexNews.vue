@@ -8,7 +8,7 @@
       <div class="content">
         <div class="wraper">
           <div class="swiper">
-            <swiper :options="swiperOption">
+            <swiper :options="swiperOption" v-if="showSwiper" ref="swiperOption">
                 <swiper-slide v-for="(item, index) of swiperList" :key="index">
                   <img class="swip-img" :src="item">
                 </swiper-slide>
@@ -43,7 +43,8 @@ export default {
     return {
       swiperOption: {
         pagination: '.swiper-pagination',
-        loop: true
+        loop: true,
+        autoplay: 2000
       }
     }
   },
@@ -54,6 +55,9 @@ export default {
         images.push(this.news[i]['postImg'])
       }
       return images
+    },
+    showSwiper () {
+      return this.news.length
     }
   }
 }
@@ -64,6 +68,9 @@ export default {
 @import '~styles/variables.styl'
 .wraper >>> .swiper-pagination-bullet-active
   background: #ffffff
+.wraper >>> .swiper-container
+  height: 0
+  padding-bottom: 66.67%
 .news
   width: 1200px
   margin: 20px auto
