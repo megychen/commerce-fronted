@@ -17,10 +17,10 @@
     </div>
     <div id="header-nav">
       <ul>
-        <li><router-link class="menu" to="/">首页</router-link></li>
-        <li><router-link class="menu" to="/intro">商会概况</router-link></li>
-        <li><router-link class="menu" to="/news">商会新闻</router-link></li>
-        <li><router-link class="menu" to="/fengcai">商会风采</router-link></li>
+        <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
+        <li><router-link class="menu" to="/intro"><div class="item">商会概况</div></router-link></li>
+        <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
+        <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
       </ul>
     </div>
   </div>
@@ -43,6 +43,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  #header >>> .router-link-active
+    .item
+      color: $hoverColor
   #header
     font-family: $fontFamily
     background: #fff
