@@ -2,7 +2,12 @@
   <div class="content">
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
-        <a class="cover" href="/">
+        <a v-if="item.postLink" :href="item.postLink" class="cover">
+          <div class="pic-wraper">
+            <img class="pic" :src="item.postImg">
+         </div>
+        </a>
+        <a v-else :href="'/#/companies/' + item._id" class="cover">
           <div class="pic-wraper">
             <img class="pic" :src="item.postImg">
          </div>
@@ -11,8 +16,8 @@
           <a class="title" v-if="item.postLink" :href="item.postLink">{{item.title}}</a>
           <a class="title" v-else :href="'/#/companies/' + item._id">{{item.title}}</a>
           <p>
-            <a v-if="item.postLink" :href="item.postLink">{{item.content.substr(0, 90) }}... </a>
-            <a v-else :href="'/#/companies/' + item._id">{{item.content.substr(0, 90) }}... </a>
+            <a v-if="item.postLink" :href="item.postLink">{{item.content.substr(0, 70) }}... </a>
+            <a v-else :href="'/#/companies/' + item._id">{{item.content.substr(0, 70) }}... </a>
           </p>
           <div class="more">
             <div class="btn">
@@ -116,9 +121,9 @@ export default {
           font-family: $fontFamily
           font-size: 18px
           font-weight: bold
-          line-height: 40px
-          height: 40px
-          color: #666
+          line-height: 30px
+          height: 30px
+          color: #444
           letter-spacing : 1px
           margin-bottom: 10px
           ellipsis()
@@ -142,6 +147,8 @@ export default {
           .btn
             float: right
             text-align: center
+            height: 28px
+            line-height: 26px
             .more-text
               color: #888
               font-size: 14px
@@ -150,8 +157,6 @@ export default {
               display: inline-block
               border: 1px solid #888
               width: 70px
-              height: 26px
-              line-height: 28px
               border-radius: 2px
               &:hover
                border: 1px solid $bgColor

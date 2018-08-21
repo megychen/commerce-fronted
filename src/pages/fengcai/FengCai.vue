@@ -27,16 +27,16 @@ export default {
 
 <style lang="stylus" scoped>
 .main-width
-  width: 1200px
+  width: 1024px
   margin: 0 auto
   .wraper
     display: flex
     justify-content: space-between
     padding: 18px 0
     .side-bar
-      width: 14%
+      width: 13%
       margin-top: 150px
     .fc-content
-      width: 82%
+      width: 83%
       background: #aaa
 </style>

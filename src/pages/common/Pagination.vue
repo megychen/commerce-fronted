@@ -47,6 +47,7 @@
         @click="onClickNextPage"
         :disabled="isInLastPage"
         aria-label="Go to next page"
+        class="pag-button"
       >
         下一页
       </button>

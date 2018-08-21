@@ -2,17 +2,24 @@
   <div class="content">
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
-        <a class="cover" href="/">
+        <a class="cover" v-if="item.postLink" :href="item.postLink">
+          <div class="pic-wraper">
+            <img class="pic" :src="item.avatar">
+          </div>
+        </a>
+        <a class="cover" v-else :href="'/#/entrepreneurs/' + item._id">
           <div class="pic-wraper">
             <img class="pic" :src="item.avatar">
           </div>
         </a>
         <div class="text">
-          <a class="title" v-if="item.postLink" :href="item.postLink">{{item.name + "   " + "  " + item.company}}</a>
-          <a class="title" v-else :href="'/#/entrepreneurs/' + item._id">{{item.name + "   " + "  " + item.company}}</a>
+          <a class="title" v-if="item.postLink" :href="item.postLink">{{item.name}}</a>
+          <a class="title" v-else :href="'/#/entrepreneurs/' + item._id">{{item.name}}</a>
+          <a class="sub-title" v-if="item.postLink" :href="item.postLink">{{item.company}} ({{item.title}})</a>
+          <a class="sub-title" v-else :href="'/#/entrepreneurs/' + item._id">{{item.company}} ({{item.title}})</a>
           <p>
-            <a v-if="item.postLink" :href="item.postLink">{{item.description.substr(0, 150) }}... </a>
-            <a v-else :href="'/#/entrepreneurs/' + item._id">{{item.description.substr(0, 150) }}... </a>
+            <a v-if="item.postLink" :href="item.postLink">{{item.description.substr(0, 70) }}... </a>
+            <a v-else :href="'/#/entrepreneurs/' + item._id">{{item.description.substr(0, 70)}}... </a>
           </p>
           <div class="more">
             <div class="button">
@@ -117,14 +124,24 @@ export default {
           font-family: $fontFamily
           font-size: 18px
           font-weight: bold
-          line-height: 40px
-          height: 40px
-          color: #666
+          line-height: 30px
+          height: 30px
+          color: #333
           letter-spacing : 1px
-          margin-bottom: 10px
+          margin-bottom: 8px
           ellipsis()
           &:hover
             color: $bgColor
+        .sub-title
+          display: block
+          font-family: $fontFamily
+          font-size: 15px
+          font-weight: bold
+          line-height: 20px
+          height: 20px
+          color: #444
+          letter-spacing : 1px
+          margin-bottom: 8px
         p a
           font-family: $fontFamily
           font-size: 14px
@@ -143,6 +160,8 @@ export default {
           .button
             float: right
             text-align: center
+            height: 28px
+            line-height: 26px
             .more-text
               color: #888
               font-size: 14px
@@ -151,8 +170,6 @@ export default {
               display: inline-block
               border: 1px solid #888
               width: 70px
-              height: 26px
-              line-height: 28px
               border-radius: 2px
               &:hover
                border: 1px solid $bgColor

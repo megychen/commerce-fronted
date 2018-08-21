@@ -2,7 +2,12 @@
   <div class="content">
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
-        <a class="cover" href="/"><img class="pic" :src="item.postImg"></a>
+        <a class="cover" v-if="item.postLink" :href="item.postLink">
+          <img class="pic" :src="item.postImg">
+        </a>
+        <a class="cover" v-else :href="'/#/posts/' + item._id">
+          <img class="pic" :src="item.postImg">
+        </a>
         <div class="text">
           <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
           <a v-else class="title" :href="'/#/posts/' + item._id">{{item.title}}</a>
@@ -12,10 +17,10 @@
           </p>
           <div class="more">
             <span>{{item.timestamp}}</span>
-            <button>
+            <div class="button">
               <a v-if="item.postLink" class="more-text" :href="item.postLink">更多</a>
               <a v-else class="more-text" :href="'/#/posts/' + item._id">更多</a>
-            </button>
+            </div>
           </div>
         </div>
       </li>
@@ -114,7 +119,7 @@ export default {
           font-weight: bold
           line-height: 40px
           height: 40px
-          color: #666
+          color: #444
           letter-spacing : 1px
           margin-bottom: 10px
           ellipsis()
@@ -135,8 +140,11 @@ export default {
            font-size: 14px
            font-family: $fontFamily
            color: #666
-          button
+          .button
             float: right
+            text-align: center
+            height: 28px
+            line-height: 26px
             .more-text
               color: #888
               font-size: 14px
@@ -145,8 +153,6 @@ export default {
               display: inline-block
               border: 1px solid #888
               width: 70px
-              height: 26px
-              line-height: 28px
               border-radius: 2px
               &:hover
                border: 1px solid $bgColor

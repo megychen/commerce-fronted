@@ -11,7 +11,7 @@
       </div>
       <div class="content">
         <div class="logo">
-          <img class="logo-img" src="~styles/images/logo3.png">
+          <img class="logo-img" src="~styles/images/logo5.png">
         </div>
         <div class="info">
           <div class="info-text">
