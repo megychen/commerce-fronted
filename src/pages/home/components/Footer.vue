@@ -49,7 +49,7 @@ export default {
   @import '~styles/variables.styl'
   @import '~styles/mixins.styl'
   .footer
-    background: #3c4155;
+    background: #6b6f7d
     .main-width
       width: 650px
       margin: 20px auto 0
