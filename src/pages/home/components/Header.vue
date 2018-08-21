@@ -10,8 +10,8 @@
             <router-link class="login l-margin" to="/signin">登录</router-link>
           </template>
           <form action="" class="search">
-            <input class="input" type="text" placeholder="请输入关键字">
-            <input class="btn" type="button" value="搜索">
+            <input class="input" type="text" placeholder="请输入关键字" v-model="keyword">
+            <input class="btn" type="button" value="搜索" @click="handleSearchBtn">
           </form>
       </div>
     </div>
@@ -32,7 +32,13 @@ export default {
   name: 'HomeHeader',
   data () {
     return {
-      user: ''
+      user: '',
+      keyword: ''
+    }
+  },
+  methods: {
+    handleSearchBtn () {
+      this.$router.push({path: '/news', query: {search: this.keyword}})
     }
   },
   mounted () {

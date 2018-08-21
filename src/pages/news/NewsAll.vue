@@ -54,10 +54,12 @@ export default {
       this.currentPage = page
     },
     getPostsData () {
+      const search = this.$route.query.search
       axios.get('/api/posts', {
         params: {
           pageNo: 1,
-          pageSize: 8
+          pageSize: 8,
+          search: search
         }
       }).then(this.handlePostsDataSucc)
     },
