@@ -12,9 +12,9 @@
       </router-link>
     </div>
     <ul class=" post-item post-menu-content">
-      <router-link to="/admin/posts-new"><li class="border-bottom">新增商会新闻专题</li></router-link>
-      <router-link to="/admin/companies-new"><li class="border-bottom">新增企业专题</li></router-link>
-      <router-link to="/admin/entrepreneurs-new"><li>新增企业家专题</li></router-link>
+      <router-link to="/admin/posts-new"><li class="create-item border-bottom">新增商会新闻专题</li></router-link>
+      <router-link to="/admin/companies-new"><li class="create-item border-bottom">新增企业专题</li></router-link>
+      <router-link to="/admin/entrepreneurs-new"><li class="create-item">新增企业家专题</li></router-link>
     </ul>
   </div>
 </template>
@@ -27,6 +27,11 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  .side-wrapper >>> .router-link-active
+    .side-item
+      background: $bgColor
+    .create-item
+      color: $fontColor
   .side-wrapper
     float: left
     width: 20%
@@ -36,9 +41,6 @@ export default {
       font-size: 16px
       border: 1px solid $borderColor
       margin-bottom: 30px
-      .active
-        background: $bgColor
-        color: #fff
       .side-item
         text-align: center
         padding: 10px
