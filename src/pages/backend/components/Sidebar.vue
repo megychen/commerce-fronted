@@ -10,6 +10,9 @@
       <router-link to="/admin/entrepreneurs">
         <div class="side-item border-bottom">会员风采</div>
       </router-link>
+      <router-link to="/admin/users">
+        <div class="side-item border-bottom">用户管理</div>
+      </router-link>
     </div>
     <ul class=" post-item post-menu-content">
       <router-link to="/admin/posts-new"><li class="create-item border-bottom">新增商会新闻专题</li></router-link>
