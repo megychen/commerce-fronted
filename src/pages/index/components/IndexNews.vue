@@ -44,7 +44,8 @@ export default {
       swiperOption: {
         pagination: '.swiper-pagination',
         loop: true,
-        autoplay: 2000
+        autoplay: 2000,
+        clickable: true
       }
     }
   },
