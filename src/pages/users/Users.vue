@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="list">
     <li class="message" v-if="message"><span class="message">{{message}}!</span></li>
     <li class="content" v-for="item of userList" :key="item._id">
       <router-link :to="'/users/' + item._id"><span class="content-title">{{item.name}}</span></router-link>
@@ -88,25 +88,37 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+.list
+  margin-top: 20px
   .message
     float: right
     color: $fontColor
   .content
-    clear: both
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
-    padding: 10px 30px
+    list-style-type: square
+    list-style-position: inside
+    padding: 6px 10px
     border-bottom: 1px dotted #ccc
+    color: $bgColor
+    letter-spacing: 1px
+    justify-content: space-between
+    line-height: 32px
+    height: 32px
     .content-title
+      display: inline-block
+      vertical-align: middle
+      width: 50%
+      ellipsis()
       color: #666
+      font-size: 16px
       &:hover
         color: $bgColor
     .button
-      background: $bgColor
-      padding: 2px 8px
-      color: #fff
+      padding: 4px 8px
+      color: #888
+      border-radius: 2px
+      border: 1px solid #888
       cursor: pointer
+      margin-left: 5px
   .content-pagination
     margin: 20px 0
     padding: 0 30px

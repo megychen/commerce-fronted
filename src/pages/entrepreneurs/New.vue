@@ -1,6 +1,9 @@
 <template>
   <div>
-    <entre-template @submit="handleSubmit"></entre-template>
+    <div class="new">新增企业家</div>
+    <div>
+      <entre-template @submit="handleSubmit"></entre-template>
+    </div>
   </div>
 </template>
 
@@ -28,5 +31,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+.new
+  font-size: 24px
+  text-align: center
+  margin: 10px 0 30px
+  letter-spacing: 1px
+  font-weight: 400
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <new-template @submit="handleSubmit"></new-template>
+    <div class="new">新增新闻</div>
+    <div>
+      <new-template @submit="handleSubmit"></new-template>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -27,5 +31,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+.new
+  font-size: 24px
+  text-align: center
+  margin: 10px 0 30px
+  letter-spacing: 1px
+  font-weight: 400
 </style>
