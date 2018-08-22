@@ -16,6 +16,8 @@ import NewsAll from '@/pages/news/NewsAll.vue'
 import Entrepreneurs from '@/pages/entrepreneurs/Entrepreneurs'
 import EntrepreneurNew from '@/pages/entrepreneurs/New'
 import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
+import Users from '@/pages/users/Users'
+import UserReset from '@/pages/users/Reset'
 
 import PostDetail from '@/pages/detail/Post'
 import CompanyDetail from '@/pages/detail/Company'
@@ -64,7 +66,9 @@ export default new Router({
         { path: '/admin/companies-edit/:id', component: CompanyEdit },
         { path: '/admin/entrepreneurs', component: Entrepreneurs },
         { path: '/admin/entrepreneurs-new', component: EntrepreneurNew },
-        { path: '/admin/entrepreneurs-edit/:id', component: EntrepreneurEdit }
+        { path: '/admin/entrepreneurs-edit/:id', component: EntrepreneurEdit },
+        { path: '/admin/users', component: Users },
+        { path: '/admin/users-reset/:id', component: UserReset }
       ]
     }, {
       path: '/signup',

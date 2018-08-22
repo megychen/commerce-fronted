@@ -3,7 +3,7 @@
     <!-- <div class="title">新增商会新闻专题</div> -->
     <input class="input input-name" placeholder="姓名..." v-model="name">
     <input class="input input-title" placeholder="商会头衔..." v-model="title">
-    <input class="input input-company" placeholder="公司..." v-model="company">
+    <input class="input input-company" placeholder="公司或行业描述..." v-model="company">
     <mavonEditor v-model="description" ref="md"  @imgAdd="handleAddImg"/>
     <div>
       <input type="file" class="input input-file" @change="handleFileChange" name="avatar">
