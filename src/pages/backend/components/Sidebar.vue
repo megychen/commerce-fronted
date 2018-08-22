@@ -39,19 +39,16 @@ export default {
     float: left
     width: 20%
     .side-menu
-      box-sizing: border-box
-      border: 1px solid red
-      font-size: 16px
-      border: 1px solid $borderColor
+      border-radius: 3px
       margin-bottom: 30px
+      background: rgba(0, 0, 0, 0.2)
       .side-item
+        color: #fff
         text-align: center
-        padding: 10px
-        cursor: pointer
-        color: #666
-        &:hover
-          background: $bgColor
-          color: #fff
+        line-height: 50px
+        font-size: 18px
+        text-align: center
+        font-family: $fontFamily
     .post-item
       background: $bgColor
       color: #fff
