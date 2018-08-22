@@ -3,7 +3,7 @@
     <div class="main">
       <h2 class="sh_tit">
         <span>商会新闻</span>
-        <router-link class="detail" to="/intro">更多</router-link>
+        <router-link class="detail" to="/news">更多</router-link>
       </h2>
       <div class="content">
         <div class="wraper">

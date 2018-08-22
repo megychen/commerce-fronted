@@ -30,13 +30,17 @@ export default {
   width: 1024px
   margin: 0 auto
   .wraper
-    display: flex
+    overflow: hidden
     justify-content: space-between
     padding: 18px 0
     .side-bar
-      width: 13%
+      width: 12%
       margin-top: 150px
+      position: fixed
+      top: 15%
+      float: left
     .fc-content
+      float: right
       width: 83%
       background: #aaa
 </style>

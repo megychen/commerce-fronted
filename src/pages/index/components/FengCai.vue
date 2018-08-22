@@ -3,7 +3,7 @@
     <div class="main">
       <h2 class="sh_tit">
         <span>会员风采</span>
-        <router-link class="detail" to="/intro">更多</router-link>
+        <router-link class="detail" to="/fengcai/entrepreneurs">更多</router-link>
       </h2>
       <ul class="content">
         <li class="member" v-for="item of entrepreneurs" :key='item.id' >
@@ -18,7 +18,7 @@
       </ul>
       <h2 class="sh_tit">
         <span>企业风采</span>
-        <router-link class="detail" to="/intro">更多</router-link>
+        <router-link class="detail" to="/fengcai/companies">更多</router-link>
       </h2>
       <ul class="com-content">
         <li class="company" v-for="item of companies" :key='item.id' >

@@ -50,30 +50,33 @@ export default {
   .content-wrapper >>> p
     font-family: $fontFamily
     line-height: 26px;
-    text-indent: 34px;
     font-size: 16px;
     letter-spacing: 1px;
-    margin: 5px 0;
+    margin: 10px 0;
     white-space: wrap
   .content-wrapper >>> img
     display: block
     width: 500px
-    margin: 0 auto
-  img
-    border: 1px solid red
+    margin: 10px auto
   .content-wrapper
     width: 1024px
     margin: 20px auto
     padding: 20px
     background: #fff
     color: #666
+    font-family: $fontFamily
     .detail-title
-      line-height: 60px
+      line-height: 40px
       text-align: center
       font-size: 20px
       letter-spacing: 2px
+      width: 600px
+      margin: 0 auto
+      font-weight: bold
     .subtitle
       text-align: center
+      margin-top: 20px
+      font-size: 16px
       .flag
         padding-right: 40px
         font-weight: bold
