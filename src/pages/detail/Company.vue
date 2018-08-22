@@ -47,24 +47,40 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
+  .content-wrapper >>> p
+    font-family: $fontFamily
+    line-height: 26px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 10px 0;
+    white-space: wrap
+  .content-wrapper >>> img
+    display: block
+    width: 500px
+    margin: 10px auto
   .content-wrapper
     width: 1024px
     margin: 20px auto
     padding: 20px
     background: #fff
-    color: #666
+    color: #444
+    font-family: $fontFamily
     .detail-title
       line-height: 60px
       text-align: center
       font-size: 20px
       letter-spacing: 2px
+      width: 600px
+      margin: 0 auto
+      font-weight: bold
     .subtitle
       text-align: center
+      font-size: 16px
       .flag
         padding-right: 40px
         font-weight: bold
     .content
       padding: 30px 100px
       line-height: 30px
-      text-align: justify;
+      text-align: justify
 </style>

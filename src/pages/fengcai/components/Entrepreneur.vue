@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <head><base target="_blank" /></head>
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
         <a class="cover" v-if="item.postLink" :href="item.postLink">
@@ -142,6 +143,9 @@ export default {
           color: #444
           letter-spacing : 1px
           margin-bottom: 8px
+          ellipsis()
+          &:hover
+            color: $bgColor
         p a
           font-family: $fontFamily
           font-size: 14px

@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <head><base target="_blank" /></head>
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
         <a class="cover" v-if="item.postLink" :href="item.postLink">
