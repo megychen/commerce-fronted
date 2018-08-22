@@ -30,15 +30,13 @@ export default {
     return {
       companyList: [],
       currentPage: 1,
-      perPage: 10
+      perPage: 10,
+      total: 0
     }
   },
   computed: {
-    total () {
-      return this.companyList.length
-    },
     totalPages () {
-      return Math.ceil(this.companyList.length / 10)
+      return Math.ceil(this.total / 10)
     }
   },
   methods: {
@@ -54,11 +52,18 @@ export default {
       res = res.data
       if (res.success) {
         this.companyList = res.companyList
+        this.total = res.total
       }
     },
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+      axios.get('/api/companies', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleDelBtn (id, index) {
       axios.delete('/api/companies/' + id)

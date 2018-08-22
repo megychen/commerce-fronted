@@ -52,7 +52,7 @@ export default {
         name: res.token.name,
         isAdmin: res.token.isAdmin
       }
-      this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1M'})
+      this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1D'})
       this.$router.push('/')
     }
   },

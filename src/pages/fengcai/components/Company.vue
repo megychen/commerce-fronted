@@ -53,19 +53,26 @@ export default {
     return {
       currentPage: 1,
       perPage: 10,
-      postList: []
+      postList: [],
+      total: 0
     }
   },
   methods: {
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+      axios.get('api/companies', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handlePostsDataSucc)
     },
     getPostsData () {
       axios.get('api/companies', {
         params: {
-          pageNo: 1,
-          pageSize: 8
+          pageNo: this.currentPage,
+          pageSize: this.perPage
         }
       }).then(this.handlePostsDataSucc)
     },
@@ -73,15 +80,13 @@ export default {
       res = res.data
       if (res.success) {
         this.postList = res.companyList
+        this.total = res.total
       }
     }
   },
   computed: {
-    total () {
-      return this.postList.length
-    },
     totalPages () {
-      return Math.ceil(this.postList.length / 10)
+      return Math.ceil(this.total / 10)
     }
   },
   mounted () {

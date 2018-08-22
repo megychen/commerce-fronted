@@ -3,8 +3,6 @@
     <li class="message" v-if="message"><span class="message">{{message}}!</span></li>
     <li class="content" v-for="item of userList" :key="item._id">
       <router-link :to="'/users/' + item._id"><span class="content-title">{{item.name}}</span></router-link>
-      <router-link :to="'/admin/entrepreneurs-edit/' + item._id"><button class="button">编辑</button></router-link>
-      <button class="button" @click="handleDelBtn(item._id)">删除</button>
       <button class="button" @click="handleManageBtn(item._id)">设为管理员</button>
       <router-link :to="'/admin/users-reset/' + item._id">
         <button class="button">重置密码</button>
@@ -36,15 +34,13 @@ export default {
       userList: [],
       currentPage: 1,
       perPage: 10,
+      total: 0,
       message: ''
     }
   },
   computed: {
-    total () {
-      return this.userList.length
-    },
     totalPages () {
-      return Math.ceil(this.userList.length / 10)
+      return Math.ceil(this.total / 10)
     }
   },
   methods: {
@@ -60,20 +56,17 @@ export default {
       res = res.data
       if (res.success) {
         this.userList = res.userList
+        this.total = res.total
       }
     },
     onPageChange (page) {
       this.currentPage = page
-    },
-    handleDelBtn (id, index) {
-      axios.delete('/api/users/' + id)
-        .then(this.handleDelSucc)
-    },
-    handleDelSucc (res, index) {
-      res = res.data
-      if (res.success) {
-        this.getUserInfo()
-      }
+      axios.get('/api/users', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleManageBtn (id) {
       axios.patch('/api/users/' + id, {
@@ -83,7 +76,6 @@ export default {
     handleManageSucc (res) {
       res = res.data
       if (res.success) {
-        // this.getUserInfo()
         this.message = res.message
       }
     }

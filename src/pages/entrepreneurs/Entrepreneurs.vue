@@ -30,15 +30,13 @@ export default {
     return {
       entrepreneurList: [],
       currentPage: 1,
-      perPage: 10
+      perPage: 10,
+      total: 0
     }
   },
   computed: {
-    total () {
-      return this.entrepreneurList.length
-    },
     totalPages () {
-      return Math.ceil(this.entrepreneurList.length / 10)
+      return Math.ceil(this.total / 10)
     }
   },
   methods: {
@@ -54,11 +52,18 @@ export default {
       res = res.data
       if (res.success) {
         this.entrepreneurList = res.entrepreneurList
+        this.total = res.total
       }
     },
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+      axios.get('/api/entrepreneurs', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage
+        }
+      }).then(this.handleDataSucc)
     },
     handleDelBtn (id, index) {
       axios.delete('/api/entrepreneurs/' + id)

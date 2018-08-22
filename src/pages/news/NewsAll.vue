@@ -50,20 +50,29 @@ export default {
     return {
       currentPage: 1,
       perPage: 10,
-      postList: []
+      postList: [],
+      total: 0,
+      search: ''
     }
   },
   methods: {
     onPageChange (page) {
       console.log(page)
       this.currentPage = page
+      axios.get('/api/posts', {
+        params: {
+          pageNo: this.currentPage,
+          pageSize: this.perPage,
+          search: this.$route.query.search
+        }
+      }).then(this.handlePostsDataSucc)
     },
     getPostsData () {
       const search = this.$route.query.search
       axios.get('/api/posts', {
         params: {
-          pageNo: 1,
-          pageSize: 8,
+          pageNo: this.currentPage,
+          pageSize: this.perPage,
           search: search
         }
       }).then(this.handlePostsDataSucc)
@@ -72,15 +81,18 @@ export default {
       res = res.data
       if (res.success) {
         this.postList = res.postList
+        this.total = res.total
       }
     }
   },
   computed: {
-    total () {
-      return this.postList.length
-    },
     totalPages () {
-      return Math.ceil(this.postList.length / 10)
+      return Math.ceil(this.total / 10)
+    }
+  },
+  watch: {
+    '$route' () {
+      this.getPostsData()
     }
   },
   mounted () {
