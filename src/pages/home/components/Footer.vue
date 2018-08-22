@@ -55,7 +55,7 @@ export default {
     background: #6b6f7d
     .main-width
       width: 650px
-      margin: 20px auto 0
+      margin: 0 auto
       .footer-nav
         height: 54px
         ul

@@ -7,7 +7,6 @@
         <div class="content-wrapper">
           <router-view></router-view>
         </div>
-        <div class="clear"></div>
       </div>
     </div>
     <backend-footer></backend-footer>
@@ -32,11 +31,11 @@ export default {
   .main-page
     background: url(../../assets/styles/images/bg.gif)repeat
     .content
-      margin: 20px auto
+      margin: 1px auto
       background: #fff
       .wraper
         width: 1024px
-        margin: 0 auto
+        margin: 20px auto
         padding: 20px 0
         display: flex
         justify-content: space-between

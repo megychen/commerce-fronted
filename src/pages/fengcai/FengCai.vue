@@ -37,7 +37,7 @@ export default {
       width: 12%
       margin-top: 150px
       position: fixed
-      top: 15%
+      top: 10%
       float: left
     .fc-content
       float: right

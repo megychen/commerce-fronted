@@ -62,7 +62,7 @@ export default {
   background: #fff
   margin-top: 15px
   width: 1200px
-  margin: 0 auto
+  margin: 20px auto
   overflow: hidden
   .title
     padding: 0 15px

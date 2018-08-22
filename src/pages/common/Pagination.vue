@@ -160,9 +160,12 @@ export default {
       .active
         background-color: $bgColor
         color: #ffffff
+        font-family: $fontFamily
       .pag-button
         border-color: $borderColor
         border-style: solid
         border-width: 1px
         padding: 5px 10px
+        border-radius: 3px
+        font-family: $fontFamily
 </style>

@@ -14,11 +14,6 @@
         <div class="side-item border-bottom">用户管理</div>
       </router-link>
     </div>
-    <ul class=" post-item post-menu-content">
-      <router-link to="/admin/posts-new"><li class="create-item border-bottom">新增商会新闻专题</li></router-link>
-      <router-link to="/admin/companies-new"><li class="create-item border-bottom">新增企业专题</li></router-link>
-      <router-link to="/admin/entrepreneurs-new"><li class="create-item">新增企业家专题</li></router-link>
-    </ul>
   </div>
 </template>
 
@@ -33,6 +28,7 @@ export default {
   .side-wrapper >>> .router-link-active
     .side-item
       background: $bgColor
+      color: red
     .create-item
       color: $fontColor
   .side-wrapper
@@ -41,7 +37,7 @@ export default {
     .side-menu
       border-radius: 3px
       margin-bottom: 30px
-      background: rgba(0, 0, 0, 0.2)
+      background: rgba(238,179,69,0.6)
       .side-item
         color: #fff
         text-align: center
@@ -49,11 +45,4 @@ export default {
         font-size: 18px
         text-align: center
         font-family: $fontFamily
-    .post-item
-      background: $bgColor
-      color: #fff
-      text-align: center
-    .post-menu-content li
-      padding: 10px;
-      color: #fff
 </style>
