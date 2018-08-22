@@ -2,7 +2,7 @@
   <div id="header">
     <div id="header-wrap">
       <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
-      <h1>上海市松江区温州商会</h1>
+      <h1>上海市松江区温州商会(后台管理)</h1>
       <router-link to="/"><span class="back">返回首页</span></router-link>
     </div>
   </div>
@@ -16,9 +16,6 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
-  #header >>> .router-link-active
-    .item
-      color: $hoverColor
   #header
     font-family: $fontFamily
     background: #fff

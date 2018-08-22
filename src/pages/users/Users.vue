@@ -106,7 +106,7 @@ export default {
     .content-title
       display: inline-block
       vertical-align: middle
-      width: 50%
+      width: 60%
       ellipsis()
       color: #666
       font-size: 16px
