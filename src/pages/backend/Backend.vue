@@ -42,10 +42,7 @@ export default {
         justify-content: space-between
         .sidebar
           width: 14%
-          margin-top: 100px
+          margin-top: 60px
         .content-wrapper
-          // box-sizing: border-box
-          width: 79%
-          // padding: 0 20px
-          // border: 1px solid $borderColor
+          width: 80%
 </style>

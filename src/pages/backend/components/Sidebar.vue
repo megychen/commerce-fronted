@@ -48,7 +48,6 @@ export default {
         line-height: 50px
         font-size: 18px
         text-align: center
-        
         font-family: $fontFamily
     .post-item
       background: $bgColor
