@@ -1,40 +1,43 @@
 <template>
   <div class="footer">
-    <div class="main-width">
-      <div class="footer-nav">
-        <ul class="border-bottom">
-          <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
-          <li><router-link class="menu" to="/intro"><div class="item">商会概况</div></router-link></li>
-          <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
-          <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
-        </ul>
+    <head><base target="_blank" /></head>
+    <div>
+      <div class="main-width">
+        <div class="footer-nav">
+          <ul class="border-bottom">
+            <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
+            <li><router-link class="menu" to="/intro"><div class="item">商会概况</div></router-link></li>
+            <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
+            <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
+          </ul>
+        </div>
+        <div class="content">
+          <div class="logo">
+            <img class="logo-img" src="~styles/images/logo5.png">
+          </div>
+          <div class="info">
+            <div class="info-text">
+              <span class="iconfont info-icon">&#xe624;</span>
+              <p>电话：021-37793081</p>
+            </div>
+            <div class="info-text">
+              <span class="iconfont info-icon">&#xe604;</span>
+              <p>邮箱：sj_wzsh@163.com</p>
+            </div>
+            <div class="info-text">
+              <span class="iconfont info-icon">&#xe6e3;</span>
+              <p>传真：021-37793080</p>
+            </div>
+            <div class="info-text">
+              <span class="iconfont info-icon">&#xe61f;</span>
+              <p>地址：松江区三新北路100弄1号三楼</p>
+            </div>
+            <div class="info-text">
+              &copy; 2018-09 上海市松江区温州商会 版权所有
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="content">
-        <div class="logo">
-          <img class="logo-img" src="~styles/images/logo5.png">
-        </div>
-        <div class="info">
-          <div class="info-text">
-            <span class="iconfont info-icon">&#xe624;</span>
-            <p>电话：021-37793081</p>
-          </div>
-          <div class="info-text">
-            <span class="iconfont info-icon">&#xe604;</span>
-            <p>邮箱：sj_wzsh@163.com</p>
-          </div>
-          <div class="info-text">
-            <span class="iconfont info-icon">&#xe6e3;</span>
-            <p>传真：021-37793080</p>
-          </div>
-          <div class="info-text">
-            <span class="iconfont info-icon">&#xe61f;</span>
-            <p>地址：松江区三新北路100弄1号三楼</p>
-          </div>
-          <div class="info-text">
-            &copy; 2018-09 上海市松江区温州商会 版权所有
-          </div>
-        </div>
-    </div>
     </div>
   </div>
 </template>

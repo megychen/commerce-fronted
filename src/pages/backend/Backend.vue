@@ -1,24 +1,29 @@
 <template>
   <div class="main-page">
     <backend-header></backend-header>
-    <div class="wrapper">
-      <sidebar></sidebar>
-      <div class="content-wrapper">
-        <router-view></router-view>
+    <div class="content">
+      <div class="wraper">
+        <sidebar class="sidebar"></sidebar>
+        <div class="content-wrapper">
+          <router-view></router-view>
+        </div>
+        <div class="clear"></div>
       </div>
-      <div class="clear"></div>
     </div>
+    <backend-footer></backend-footer>
   </div>
 </template>
 
 <script>
 import BackendHeader from './components/Header'
 import Sidebar from './components/Sidebar'
+import BackendFooter from '../home/components/Footer'
 export default {
   name: 'Backend',
   components: {
     BackendHeader,
-    Sidebar
+    Sidebar,
+    BackendFooter
   }
 }
 </script>
@@ -26,19 +31,21 @@ export default {
 <style lang="stylus" scoped>
   .main-page
     background: url(../../assets/styles/images/bg.gif)repeat
-    padding-bottom: 30px
-    .wrapper
-      width: 1024px
+    .content
       margin: 20px auto
-      border: 1px solid #eaeaea
-      padding: 20px
       background: #fff
-      .content-wrapper
-        box-sizing: border-box
-        float: right
-        width: 78%
-        padding: 0 20px
-        border: 1px solid $borderColor
-      .clear
-        clear: both
+      .wraper
+        width: 1024px
+        margin: 0 auto
+        padding: 20px 0
+        display: flex
+        justify-content: space-between
+        .sidebar
+          width: 14%
+          margin-top: 100px
+        .content-wrapper
+          // box-sizing: border-box
+          width: 79%
+          // padding: 0 20px
+          // border: 1px solid $borderColor
 </style>

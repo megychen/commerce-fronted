@@ -54,10 +54,6 @@ export default {
     letter-spacing: 1px;
     margin: 10px 0;
     white-space: wrap
-  .content-wrapper >>> img
-    display: block
-    width: 500px
-    margin: 10px auto
   .content-wrapper
     width: 1024px
     margin: 20px auto
@@ -75,10 +71,13 @@ export default {
       font-weight: bold
     .subtitle
       text-align: center
-      font-size: 16px
-      .flag
-        padding-right: 40px
-        font-weight: bold
+      font-size: 18px
+      margin-bottom: 30px
+    .avatar
+      width: 300px
+      margin: 0 auto
+      .image
+        width: 100%
     .content
       padding: 30px 100px
       line-height: 30px
