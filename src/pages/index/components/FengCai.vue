@@ -49,6 +49,8 @@ export default {
 
 <style lang="stylus" scoped>
  @import '~styles/variables.styl'
+ @import '~styles/mixins.styl'
+
 .news
   width: 1200px
   margin: 20px auto
@@ -118,14 +120,16 @@ export default {
           .com-pic
             width: 100%
         .com-intro
-          background: rgba(0, 0, 0, 0.3)
+          background: rgba(100, 100 ,100, 0.9)
           position: relative
-          top: -34px
+          top: -40px
           .com-name
             color: #EEB345
             font-family: $fontFamily
-            line-height: 32px
-            height: 32px
+            line-height: 38px
+            height: 38px
             text-align: center
             font-size: 16px
+            font-weight: 600
+            ellipsis ()
 </style>
