@@ -22,8 +22,18 @@
       </h2>
       <ul class="com-content">
         <li class="company" v-for="item of companies" :key='item.id' >
-          <a class="compic-wraper" :href="'/#/companies/' + item._id"><img class="com-pic" :src="item.postImg" ></a>
-          <a :href="'/#/companies/' + item._id">
+          <a  v-if="item.postLink" :href="item.postLink" class="compic-wraper">
+            <img class="com-pic" :src="item.postImg" >
+          </a>
+          <a v-else :href="'/#/companies/' + item._id" class="compic-wraper">
+            <img class="com-pic" :src="item.postImg" >
+          </a>
+          <a v-if="item.postLink" :href="item.postLink">
+            <div class="com-intro">
+              <div class="com-name">{{item.title}}</div>
+            </div>
+          </a>
+          <a v-else :href="'/#/companies/' + item._id">
             <div class="com-intro">
               <div class="com-name">{{item.title}}</div>
             </div>
