@@ -3,7 +3,7 @@
     <ul class="list">
       <li class="message" v-if="message"><span class="message">{{message}}!</span></li>
       <li class="content" v-for="item of userList" :key="item._id">
-        <router-link :to="'/users/' + item._id"><span class="content-title">{{item.name}}</span></router-link>
+        <span class="content-title">{{item.name}}</span>
         <button class="button" @click="handleManageBtn(item._id)">设为管理员</button>
         <router-link :to="'/admin/users-reset/' + item._id">
           <button class="button">重置密码</button>
@@ -113,12 +113,10 @@ export default {
       .content-title
         display: inline-block
         vertical-align: middle
-        width: 66%
+        width: 58%
         ellipsis()
         color: #666
         font-size: 16px
-        &:hover
-          color: $bgColor
       .button
         padding: 4px 8px
         color: #888
