@@ -4,8 +4,8 @@
       <a href="/" id="logo"><img id="logo-img" src="~styles/images/logo.jpg"></a>
       <h1>上海市松江区温州商会</h1>
       <div id="header-right">
-          <router-link class="login" to="/admin" v-if="isAdmin">管理员(<span>{{user.name}}</span>)</router-link>
-          <span v-else class="login">{{user.name}}</span>
+          <router-link class="login" to="/admin" v-if="user && isAdmin">管理员(<span>{{user.name}}</span>)</router-link>
+          <span v-else-if="user" class="login">{{user.name}}</span>
           <template v-if="!user">
             <router-link class="login l-margin" to="/signup">注册</router-link>
             <router-link class="login l-margin" to="/signin">登录</router-link>
