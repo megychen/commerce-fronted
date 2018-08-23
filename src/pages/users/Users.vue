@@ -4,7 +4,7 @@
       <li class="message" v-if="message"><span class="message">{{message}}!</span></li>
       <li class="content" v-for="item of userList" :key="item._id">
         <span class="content-title">{{item.name}}</span>
-        <button class="button" @click="handleManageBtn(item._id)">设为管理员</button>
+        <button class="button" @click="handleManageBtn(item._id)">{{word}}</button>
         <router-link :to="'/admin/users-reset/' + item._id">
           <button class="button">重置密码</button>
         </router-link>
@@ -43,6 +43,13 @@ export default {
   computed: {
     totalPages () {
       return Math.ceil(this.total / 10)
+    },
+    word: function () {
+      if (this.userList.isAdmin === false) {
+        return '设为管理员'
+      } else {
+        return '取消管理员'
+      }
     }
   },
   methods: {
@@ -74,6 +81,7 @@ export default {
       axios.patch('/api/users/' + id, {
         isAdmin: true
       }).then(this.handleManageSucc)
+      this.userList.isAdmin = !this.userList.isAdmin
     },
     handleManageSucc (res) {
       res = res.data

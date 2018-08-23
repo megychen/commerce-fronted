@@ -2,7 +2,7 @@
   <div class="news">
     <div class="main">
       <h2 class="sh_tit">
-        <span>会员风采</span>
+        <span>企业家风采</span>
         <router-link class="detail" to="/fengcai/entrepreneurs">更多</router-link>
       </h2>
       <ul class="content">
