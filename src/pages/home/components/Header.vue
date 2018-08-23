@@ -19,7 +19,7 @@
     <div id="header-nav">
       <ul>
         <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
-        <li><router-link class="menu" to="/intro"><div class="item">商会概况</div></router-link></li>
+        <li><router-link class="menu" to="/intro"><div class="item">商会简介</div></router-link></li>
         <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
         <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
       </ul>
