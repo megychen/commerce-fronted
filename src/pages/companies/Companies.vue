@@ -2,7 +2,8 @@
   <div class="content-wraper">
     <ul class="post">
       <li class="content" v-for="item of companyList" :key="item._id">
-        <router-link :to="'/companies/' + item._id"><span class="content-title">{{item.title}}</span></router-link>
+        <a v-if="item.postLink" class="content-title" :href="item.postLink">{{item.title}}</a>
+        <a v-else class="content-title" :href="'/#/companies/' + item._id">{{item.title}}</a>
         <router-link :to="'/admin/companies-edit/' + item._id"><button class="button">编辑</button></router-link>
         <button class="button" @click="handleDelBtn(item._id)">删除</button>
       </li>
