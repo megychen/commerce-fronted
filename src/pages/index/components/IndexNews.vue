@@ -9,8 +9,13 @@
         <div class="wraper">
           <div class="swiper">
             <swiper :options="swiperOption" v-if="showSwiper" ref="swiperOption">
-                <swiper-slide v-for="(item, index) of swiperList" :key="index">
-                  <img class="swip-img" :src="item">
+                <swiper-slide v-for="(item, index) of news" :key="index">
+                  <a v-if="item.postLink" :href="item.postLink">
+                    <img class="swip-img" :src="item.postImg">
+                  </a>
+                  <a v-else :href="'/#/news/' + item._id">
+                    <img class="swip-img" :src="item.postImg">
+                  </a>
                 </swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>
             </swiper>
@@ -50,13 +55,6 @@ export default {
     }
   },
   computed: {
-    swiperList () {
-      let images = []
-      for (let i = 0; i < this.news.length; i++) {
-        images.push(this.news[i]['postImg'])
-      }
-      return images
-    },
     showSwiper () {
       return this.news.length
     }
