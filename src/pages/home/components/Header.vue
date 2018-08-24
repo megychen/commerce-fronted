@@ -17,12 +17,14 @@
       </div>
     </div>
     <div id="header-nav">
-      <ul>
-        <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
-        <li><router-link class="menu" to="/intro"><div class="item">商会简介</div></router-link></li>
-        <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
-        <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
-      </ul>
+      <div id="navbar-wraper">
+        <ul class="nav-bar">
+          <li><router-link class="menu" to="/index"><div class="item">首页</div></router-link></li>
+          <li><router-link class="menu" to="/intro"><div class="item">商会简介</div></router-link></li>
+          <li><router-link class="menu" to="/news"><div class="item">商会新闻</div></router-link></li>
+          <li><router-link class="menu" to="/fengcai"><div class="item">商会风采</div></router-link></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -123,23 +125,26 @@ export default {
       height: 60px
       background: $bgColor
       box-shadow: 1px 1px 10px #ccc
-      ul
-        width: 650px
+      #navbar-wraper
+        width: 1200px
         margin: 0 auto
-        list-style: none
-        display: flex
-        text-align: center
-        li
-          display: inline-block
-          line-height: 60px
-          flex: 1
-          .menu
-            color: #fff
+        .nav-bar
+          width: 650px
+          margin: 0 auto
+          list-style: none
+          display: flex
+          text-align: center
+          li
             display: inline-block
-            height: 60px
-            font-size: 18px
-            letter-spacing: 1px
-          .menu:hover
-            color: $hoverColor
+            line-height: 60px
+            flex: 1
+            .menu
+              color: #fff
+              display: inline-block
+              height: 60px
+              font-size: 18px
+              letter-spacing: 1px
+            .menu:hover
+              color: $hoverColor
 
 </style>

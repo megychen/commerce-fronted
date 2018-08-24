@@ -34,13 +34,13 @@ export default {
     justify-content: space-between
     padding: 18px 0
     .side-bar
-      width: 12%
+      width: 9%
       margin-top: 150px
       position: fixed
       top: 10%
       float: left
     .fc-content
       float: right
-      width: 83%
+      width: 82%
       background: #aaa
 </style>
