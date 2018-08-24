@@ -8,7 +8,7 @@
         <div class="side-item border-bottom">企业风采</div>
       </router-link>
       <router-link to="/admin/entrepreneurs">
-        <div class="side-item border-bottom">会员风采</div>
+        <div class="side-item border-bottom">企业家风采</div>
       </router-link>
       <router-link to="/admin/users">
         <div class="side-item border-bottom">用户管理</div>
