@@ -57,6 +57,10 @@ export default {
     }
   },
   mounted () {
+    const commerce = JSON.parse(this.$cookie.get('commerce'))
+    if (!commerce) {
+      return
+    }
     const user = JSON.parse(this.$cookie.get('commerce'))['name']
     if (user) {
       this.$router.push('/')
