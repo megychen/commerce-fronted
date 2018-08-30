@@ -124,7 +124,11 @@ export default {
         display: block
         width: 26%
         .pic
+          overflow: hidden
           width: 100%
+          height: 0
+          padding-bottom: 66.67%
+          background: #eeeeee
       .text
         width: 70%
         .title
