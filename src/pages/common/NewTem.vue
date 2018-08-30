@@ -66,7 +66,7 @@ export default {
   methods: {
     checkForm () {
       this.errors = []
-      if (this.title && this.author && this.content && this.postImg) {
+      if (this.title && this.author && this.content) {
         return true
       }
 
@@ -80,10 +80,6 @@ export default {
 
       if (!this.content) {
         this.errors.push('缺少文章简介或内容')
-      }
-
-      if (!this.postImg) {
-        this.errors.push('缺少文章封面图')
       }
     },
     handleTextChange () {

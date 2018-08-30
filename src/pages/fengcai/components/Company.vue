@@ -5,12 +5,14 @@
       <li v-for="item of postList" :key="item.id">
         <a v-if="item.postLink" :href="item.postLink" class="cover">
           <div class="pic-wraper">
-            <img class="pic" :src="item.postImg">
+            <img class="pic" v-if="item.postImg" :src="item.postImg">
+            <img class="pic" v-else src="~styles/images/defaultImg.jpg">
          </div>
         </a>
         <a v-else :href="'/#/companies/' + item._id" class="cover">
           <div class="pic-wraper">
-            <img class="pic" :src="item.postImg">
+            <img class="pic" v-if="item.postImg" :src="item.postImg">
+            <img class="pic" v-else src="~styles/images/defaultImg.jpg">
          </div>
         </a>
         <div class="text">

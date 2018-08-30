@@ -11,10 +11,12 @@
             <swiper :options="swiperOption" v-if="showSwiper" ref="swiperOption">
                 <swiper-slide v-for="(item, index) of news" :key="index">
                   <a v-if="item.postLink" :href="item.postLink">
-                    <img class="swip-img" :src="item.postImg">
+                    <img class="swip-img" v-if="item.postImg" :src="item.postImg">
+                    <img class="swip-img" v-else src="~styles/images/defaultImg.jpg">
                   </a>
                   <a v-else :href="'/#/news/' + item._id">
-                    <img class="swip-img" :src="item.postImg">
+                    <img class="swip-img" v-if="item.postImg" :src="item.postImg">
+                    <img class="swip-img" v-else src="~styles/images/defaultImg.jpg">
                   </a>
                 </swiper-slide>
                 <div class="swiper-pagination"  slot="pagination"></div>

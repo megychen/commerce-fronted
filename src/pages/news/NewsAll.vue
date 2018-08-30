@@ -4,10 +4,12 @@
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
         <a class="cover" v-if="item.postLink" :href="item.postLink">
-          <img class="pic" :src="item.postImg">
+          <img class="pic" v-if="item.postImg" :src="item.postImg">
+          <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
         </a>
         <a class="cover" v-else :href="'/#/posts/' + item._id">
-          <img class="pic" :src="item.postImg">
+          <img class="pic" v-if="item.postImg" :src="item.postImg">
+          <img class="pic" v-else src="~styles/images/defaultImg.jpg">
         </a>
         <div class="text">
           <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
