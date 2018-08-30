@@ -4,12 +4,16 @@
     <ul class="postList">
       <li v-for="item of postList" :key="item.id">
         <a class="cover" v-if="item.postLink" :href="item.postLink">
-          <img class="pic" v-if="item.postImg" :src="item.postImg">
-          <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
+          <div class="pic-wraper">
+            <img class="pic" v-if="item.postImg" :src="item.postImg">
+            <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
+          </div>
         </a>
         <a class="cover" v-else :href="'/#/posts/' + item._id">
-          <img class="pic" v-if="item.postImg" :src="item.postImg">
-          <img class="pic" v-else src="~styles/images/defaultImg.jpg">
+          <div class="pic-wraper">
+            <img class="pic" v-if="item.postImg" :src="item.postImg">
+            <img class="pic" v-else src="~styles/images/defaultImg.jpg">
+          </div>
         </a>
         <div class="text">
           <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
@@ -123,12 +127,14 @@ export default {
       .cover
         display: block
         width: 26%
-        .pic
+        .pic-wraper
           overflow: hidden
           width: 100%
           height: 0
           padding-bottom: 66.67%
           background: #eeeeee
+          .pic
+            width: 100%
       .text
         width: 70%
         .title
