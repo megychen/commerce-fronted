@@ -12,14 +12,14 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://9303.megychen.info:8080',
+        target: 'http://locatlhost',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api'
         }
       },
       '/uploads': {
-        target: 'http://9303.megychen.info:8080',
+        target: 'http://localhost',
         changeOrigin: true,
         pathRewrite: {
           '^/uploads': '/uploads'
