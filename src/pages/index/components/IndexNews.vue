@@ -10,11 +10,7 @@
           <div class="swiper">
             <swiper :options="swiperOption" v-if="showSwiper" ref="swiperOption">
                 <swiper-slide v-for="(item, index) of news" :key="index">
-                  <a v-if="item.postLink" :href="item.postLink">
-                    <img class="swip-img" v-if="item.postImg" :src="item.postImg">
-                    <img class="swip-img" v-else src="~styles/images/defaultImg.jpg">
-                  </a>
-                  <a v-else :href="'/#/news/' + item._id">
+                  <a :href="link(item)">
                     <img class="swip-img" v-if="item.postImg" :src="item.postImg">
                     <img class="swip-img" v-else src="~styles/images/defaultImg.jpg">
                   </a>
@@ -27,8 +23,7 @@
         <div class="posts-wraper">
           <ul class="posts">
             <li class="posts-item" v-for="item of news" :key="item._id">
-              <a v-if="item.postLink" class="posts-title" :href="item.postLink">{{item.title}}</a>
-              <a v-else class="posts-title" :href="'/#/posts/' + item._id">{{item.title}}</a>
+              <a class="posts-title" :href="link(item)">{{item.title}}</a>
             </li>
           </ul>
         </div>
@@ -59,6 +54,11 @@ export default {
   computed: {
     showSwiper () {
       return this.news.length
+    }
+  },
+  methods: {
+    link (item) {
+      return item.postLink ? item.postLink : `/#/posts/${item._id}`
     }
   }
 }

@@ -22,18 +22,10 @@
       </h2>
       <ul class="com-content">
         <li class="company" v-for="item of companies" :key='item.id' >
-          <a  v-if="item.postLink" :href="item.postLink" class="compic-wraper">
+          <a  :href="link(item)" class="compic-wraper">
             <img class="com-pic" :src="item.postImg" >
           </a>
-          <a v-else :href="'/#/companies/' + item._id" class="compic-wraper">
-            <img class="com-pic" :src="item.postImg" >
-          </a>
-          <a v-if="item.postLink" :href="item.postLink">
-            <div class="com-intro">
-              <div class="com-name">{{item.title}}</div>
-            </div>
-          </a>
-          <a v-else :href="'/#/companies/' + item._id">
+          <a :href="link(item)">
             <div class="com-intro">
               <div class="com-name">{{item.title}}</div>
             </div>
@@ -52,6 +44,11 @@ export default {
     },
     entrepreneurs: {
       type: Array
+    }
+  },
+  methods: {
+    link (item) {
+      return item.postLink ? item.postLink : `/#/companies/${item._id}`
     }
   }
 }

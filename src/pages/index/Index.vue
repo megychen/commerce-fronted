@@ -13,6 +13,9 @@ import HomeFriends from './components/Friends'
 import IndexNews from './components/IndexNews'
 import FengCai from './components/Fengcai'
 import axios from 'axios'
+import {getNewsList} from 'api/news'
+import {getCompaniesList} from 'api/companies'
+import {getEntrepreneursList} from 'api/entrepreneurs'
 
 export default {
   name: 'Home',
@@ -42,44 +45,24 @@ export default {
       }
     },
     query () {
-      axios.get('/api/posts', {
-        params: {
-          pageNo: 1,
-          pageSize: 10
+      getNewsList(10, 1).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.postList = res.postList
         }
-      }).then(this.handlePostsDataSucc)
-
-      axios.get('/api/entrepreneurs', {
-        params: {
-          pageNo: 1,
-          pageSize: 6
+      })
+      getCompaniesList(4, 1).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.companyList = res.companyList
         }
-      }).then(this.handleEntrepreneurDataSucc)
-
-      axios.get('/api/companies', {
-        params: {
-          pageNo: 1,
-          pageSize: 4
+      })
+      getEntrepreneursList(6, 1).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.entrepreneurList = res.entrepreneurList
         }
-      }).then(this.handleCompaniesDataSucc)
-    },
-    handlePostsDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.postList = res.postList
-      }
-    },
-    handleEntrepreneurDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.entrepreneurList = res.entrepreneurList
-      }
-    },
-    handleCompaniesDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.companyList = res.companyList
-      }
+      })
     }
   },
   mounted () {
