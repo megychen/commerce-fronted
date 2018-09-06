@@ -49,6 +49,7 @@ export default {
   methods: {
     handleSearchBtn () {
       this.$router.push({path: '/news', query: {search: this.keyword}})
+      this.keyword = ''
     },
     handleLogOut () {
       this.$cookie.delete('commerce')

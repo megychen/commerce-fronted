@@ -1,57 +1,26 @@
 <template>
   <div class="content">
     <head><base target="_blank" /></head>
-    <ul class="postList">
-      <li v-for="item of postList" :key="item.id">
-        <a class="cover" v-if="item.postLink" :href="item.postLink">
-          <div class="pic-wraper">
-            <img class="pic" v-if="item.postImg" :src="item.postImg">
-            <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
-          </div>
-        </a>
-        <a class="cover" v-else :href="'/#/posts/' + item._id">
-          <div class="pic-wraper">
-            <img class="pic" v-if="item.postImg" :src="item.postImg">
-            <img class="pic" v-else src="~styles/images/defaultImg.jpg">
-          </div>
-        </a>
-        <div class="text">
-          <a v-if="item.postLink" class="title" :href="item.postLink">{{item.title}}</a>
-          <a v-else class="title" :href="'/#/posts/' + item._id">{{item.title}}</a>
-          <p>
-            <a v-if="item.postLink" :href="item.postLink">{{item.content.substr(0, 90)}}... </a>
-            <a v-else :href="'/#/posts/' + item._id">{{item.content.substr(0, 90)}}... </a>
-          </p>
-          <div class="more">
-            <span>{{item.timestamp}}</span>
-            <div class="button">
-              <a v-if="item.postLink" class="more-text" :href="item.postLink">更多</a>
-              <a v-else class="more-text" :href="'/#/posts/' + item._id">更多</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="content-pagination">
-        <common-pagination
-          :currentPage="currentPage"
-          :totalPages="totalPages"
-          :total="total"
-          :perPage="10"
-          @pagechanged="onPageChange"
-        >
-        </common-pagination>
-      </li>
-    </ul>
+    <post-tem
+      :items="postList"
+      :total="total"
+      :type="'posts'"
+      @pageChange="handlePageChanged"
+    >
+    </post-tem>
   </div>
 </template>
 
 <script>
 import CommonPagination from '../common/Pagination'
-import axios from 'axios'
+import PostTem from '../common/PostTem'
+import {getNewsList} from 'api/news'
+
 export default {
   name: 'NewsAll',
   components: {
-    CommonPagination
+    CommonPagination,
+    PostTem
   },
   data () {
     return {
@@ -62,34 +31,23 @@ export default {
       search: ''
     }
   },
+  created () {
+    this._getNewsList()
+  },
   methods: {
-    onPageChange (page) {
-      console.log(page)
+    handlePageChanged (page) {
       this.currentPage = page
-      axios.get('/api/posts', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage,
-          search: this.$route.query.search
-        }
-      }).then(this.handlePostsDataSucc)
+      this._getNewsList()
     },
-    getPostsData () {
-      const search = this.$route.query.search
-      axios.get('/api/posts', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage,
-          search: search
+    _getNewsList () {
+      this.search = this.$route.query.search
+      getNewsList(this.perPage, this.currentPage, this.search).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.postList = res.postList
+          this.total = res.total
         }
-      }).then(this.handlePostsDataSucc)
-    },
-    handlePostsDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.postList = res.postList
-        this.total = res.total
-      }
+      })
     }
   },
   computed: {
@@ -99,11 +57,8 @@ export default {
   },
   watch: {
     '$route' () {
-      this.getPostsData()
+      this._getNewsList()
     }
-  },
-  mounted () {
-    this.getPostsData()
   }
 }
 </script>
