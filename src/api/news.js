@@ -25,3 +25,23 @@ export function getNewInfo (id) {
     })
   })
 }
+
+export function createNews (data) {
+  return new Promise((resolve, reject) => {
+    axios.post('/api/posts', data).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}
+
+export function deleteNew (id) {
+  return new Promise((resolve, reject) => {
+    axios.delete(`/api/posts/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

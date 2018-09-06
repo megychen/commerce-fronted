@@ -5,7 +5,7 @@
       <div class="wraper">
         <sidebar class="sidebar"></sidebar>
         <div class="content-wrapper">
-          <router-view></router-view>
+          <keep-alive><router-view></router-view></keep-alive>
         </div>
       </div>
     </div>

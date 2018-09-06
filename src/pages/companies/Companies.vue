@@ -1,23 +1,13 @@
 <template>
   <div class="content-wraper">
-    <ul class="post">
-      <li class="content" v-for="item of companyList" :key="item._id">
-        <a v-if="item.postLink" class="content-title" :href="item.postLink">{{item.title}}</a>
-        <a v-else class="content-title" :href="'/#/companies/' + item._id">{{item.title}}</a>
-        <router-link :to="'/admin/companies-edit/' + item._id"><button class="button">编辑</button></router-link>
-        <button class="button" @click="handleDelBtn(item._id)">删除</button>
-      </li>
-      <li class="content-pagination">
-        <common-pagination
-          :currentPage="currentPage"
-          :totalPages="totalPages"
-          :total="total"
-          :perPage="10"
-          @pagechanged="onPageChange"
-        >
-        </common-pagination>
-      </li>
-    </ul>
+    <backend-tem
+      :items="companyList"
+      :total="total"
+      :type="'companies'"
+      @pageChange="handlePageChanged"
+      @deleteItem="handleItemDelete"
+    >
+    </backend-tem>
     <div class="new">
       <router-link to="/admin/companies-new"><div class="new-tit">新增企业</div></router-link>
     </div>
@@ -25,12 +15,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-import CommonPagination from '../common/Pagination'
+import {getCompaniesList, deleteCompany} from 'api/companies'
+import BackendTem from '../common/BackendTem'
+
 export default {
   name: 'Companies',
   components: {
-    CommonPagination
+    BackendTem
   },
   data () {
     return {
@@ -40,50 +31,34 @@ export default {
       total: 0
     }
   },
-  computed: {
-    totalPages () {
-      return Math.ceil(this.total / 10)
-    }
+  created () {
+    this._getCompaniesList()
   },
   methods: {
-    getCompanyInfo () {
-      axios.get('/api/companies', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
-        }
-      }).then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.companyList = res.companyList
-        this.total = res.total
-      }
-    },
-    onPageChange (page) {
-      console.log(page)
+    handlePageChanged (page) {
       this.currentPage = page
-      axios.get('/api/companies', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
+      this._getCompaniesList()
+    },
+    handleItemDelete (id) {
+      this._deleteCompany(id)
+    },
+    _getCompaniesList () {
+      getCompaniesList(this.perPage, this.currentPage).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.companyList = res.companyList
+          this.total = res.total
         }
-      }).then(this.handleDataSucc)
+      })
     },
-    handleDelBtn (id, index) {
-      axios.delete('/api/companies/' + id)
-        .then(this.handleDelSucc)
-    },
-    handleDelSucc (res, index) {
-      res = res.data
-      if (res.success) {
-        this.getCompanyInfo()
-      }
+    _deleteCompany (id) {
+      deleteCompany(id).then((res) => {
+        res = res.data
+        if (res.success) {
+          this._getCompaniesList()
+        }
+      })
     }
-  },
-  mounted () {
-    this.getCompanyInfo()
   }
 }
 </script>
@@ -91,56 +66,24 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
   @import '~styles/mixins.styl'
-.content-wraper
-  display: flex
-  justify-content: space-between
-  font-family: $fontFamily
-  .new
-    width: 12%
-    height: 32px
-    line-height: 32px
-    text-align: center
-    border: 1px solid $bgColor
-    border-radius: 2px
-    &:hover
-      background: 1px$bgColor
-    .new-tit
-      color: $bgColor
-      font-size: 16px
-      letter-spacing: 1px
-      font-family: $fontFamily
-      &:hover
-        color: #FFF
-  .post
-    width: 80%
-    margin-top: 20px
-    .content
-      list-style-type: square
-      list-style-position: inside
-      padding: 6px 10px
-      border-bottom: 1px dotted #ccc
-      color: $bgColor
-      letter-spacing: 1px
-      justify-content: space-between
-      line-height: 32px
+  .content-wraper
+    display: flex
+    justify-content: space-between
+    font-family: $fontFamily
+    .new
+      width: 12%
       height: 32px
-      .content-title
-        display: inline-block
-        vertical-align: middle
-        width: 76%
-        ellipsis()
-        color: #666
+      line-height: 32px
+      text-align: center
+      border: 1px solid $bgColor
+      border-radius: 2px
+      &:hover
+        background: 1px$bgColor
+      .new-tit
+        color: $bgColor
         font-size: 16px
+        letter-spacing: 1px
+        font-family: $fontFamily
         &:hover
-          color: $bgColor
-      .button
-        padding: 4px 8px
-        color: #888
-        border-radius: 2px
-        border: 1px solid #888
-        cursor: pointer
-        margin-left: 5px
-    .content-pagination
-      margin: 20px 0
-      padding: 0 30px
+          color: #FFF
 </style>

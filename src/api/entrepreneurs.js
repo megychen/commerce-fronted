@@ -24,3 +24,23 @@ export function getEntrepreneurInfo (id) {
     })
   })
 }
+
+export function createEntrepreneurs (data) {
+  return new Promise((resolve, reject) => {
+    axios.post('/api/entrepreneurs', data).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}
+
+export function deleteEntrepreneur (id) {
+  return new Promise((resolve, reject) => {
+    axios.delete(`/api/entrepreneurs/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

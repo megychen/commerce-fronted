@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import NewTemplate from '../common/NewTem'
+import {createNews} from 'api/news'
 export default {
   name: 'PostNew',
   components: {
@@ -18,13 +18,15 @@ export default {
   },
   methods: {
     handleSubmit (data) {
-      axios.post('/api/posts', data).then(this.handleDataSucc)
+      this._createNews(data)
     },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.$router.push('/admin/posts')
-      }
+    _createNews (data) {
+      createNews(data).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.$router.push('/admin/posts')
+        }
+      })
     }
   }
 }

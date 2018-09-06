@@ -8,8 +8,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import EntreTemplate from '../common/EntreTem'
+import {createEntrepreneurs} from 'api/entrepreneurs'
+
 export default {
   name: 'EntrepreneurNew',
   components: {
@@ -17,14 +18,15 @@ export default {
   },
   methods: {
     handleSubmit (data) {
-      console.log(data)
-      axios.post('/api/entrepreneurs', data).then(this.handleDataSucc)
+      this._createEntrepreneurs(data)
     },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.$router.push('/admin/entrepreneurs')
-      }
+    _createEntrepreneurs (data) {
+      createEntrepreneurs(data).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.$router.push('/admin/entrepreneurs')
+        }
+      })
     }
   }
 }

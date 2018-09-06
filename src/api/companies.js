@@ -24,3 +24,23 @@ export function getCompanyInfo (id) {
     })
   })
 }
+
+export function createCompanies (data) {
+  return new Promise((resolve, reject) => {
+    axios.post('/api/companies', data).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}
+
+export function deleteCompany (id) {
+  return new Promise((resolve, reject) => {
+    axios.delete(`/api/companies/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

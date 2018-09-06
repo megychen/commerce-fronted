@@ -2,13 +2,13 @@
   <div>
     <div class="new">新增企业</div>
     <div>
-      <new-template @submit="handleSubmit" @addImg="handleUploadImg"></new-template>
+      <new-template @submit="handleSubmit"></new-template>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import {createCompanies} from 'api/companies'
 import NewTemplate from '../common/NewTem'
 export default {
   name: 'CompanyNew',
@@ -22,24 +22,15 @@ export default {
   },
   methods: {
     handleSubmit (data) {
-      axios.post('/api/companies', data).then(this.handleDataSucc)
+      this._createCompanies(data)
     },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.$router.push('/admin/companies')
-      }
-    },
-    handleUploadImg (data, pos) {
-      this.pos = pos
-      axios.post('/api/image', data)
-        .then(this.handleUploadImgSucc)
-    },
-    handleUploadImgSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.filePath = res.filePath
-      }
+    _createCompanies (data) {
+      createCompanies(data).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.$router.push('/admin/companies')
+        }
+      })
     }
   }
 }

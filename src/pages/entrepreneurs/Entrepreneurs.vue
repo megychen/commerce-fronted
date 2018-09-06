@@ -1,35 +1,26 @@
 <template>
   <div class="content-wraper">
-    <ul class="post">
-      <li class="content" v-for="item of entrepreneurList" :key="item._id">
-        <router-link :to="'/entrepreneurs/' + item._id"><span class="content-title">{{item.name}}  {{item.title}}</span></router-link>
-        <router-link :to="'/admin/entrepreneurs-edit/' + item._id"><button class="button">编辑</button></router-link>
-        <button class="button" @click="handleDelBtn(item._id)">删除</button>
-      </li>
-      <li class="content-pagination">
-        <common-pagination
-          :currentPage="currentPage"
-          :totalPages="totalPages"
-          :total="total"
-          :perPage="10"
-          @pagechanged="onPageChange"
-        >
-        </common-pagination>
-      </li>
-    </ul>
+    <backend-tem
+      :items="entrepreneurList"
+      :total="total"
+      :type="'entrepreneurs'"
+      @pageChange="handlePageChanged"
+      @deleteItem="handleItemDelete"
+    >
+    </backend-tem>
     <div class="new">
       <router-link to="/admin/entrepreneurs-new"><div class="new-tit">新增企业家</div></router-link>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-import CommonPagination from '../common/Pagination'
+import {getEntrepreneursList, deleteEntrepreneur} from 'api/entrepreneurs'
+import BackendTem from '../common/BackendTem'
 export default {
-  name: 'Posts',
+  name: 'Entrepreneurs',
   components: {
-    CommonPagination
+    BackendTem
   },
   data () {
     return {
@@ -39,50 +30,34 @@ export default {
       total: 0
     }
   },
-  computed: {
-    totalPages () {
-      return Math.ceil(this.total / 10)
-    }
+  created () {
+    this._getEntrepreneursList()
   },
   methods: {
-    getEntrepreneurInfo () {
-      axios.get('/api/entrepreneurs', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
-        }
-      }).then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.entrepreneurList = res.entrepreneurList
-        this.total = res.total
-      }
-    },
-    onPageChange (page) {
-      console.log(page)
+    handlePageChanged (page) {
       this.currentPage = page
-      axios.get('/api/entrepreneurs', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
+      this._getEntrepreneursList()
+    },
+    handleItemDelete (id) {
+      this._deleteEntrepreneur(id)
+    },
+    _getEntrepreneursList () {
+      getEntrepreneursList(this.perPage, this.currentPage).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.entrepreneurList = res.entrepreneurList
+          this.total = res.total
         }
-      }).then(this.handleDataSucc)
+      })
     },
-    handleDelBtn (id, index) {
-      axios.delete('/api/entrepreneurs/' + id)
-        .then(this.handleDelSucc)
-    },
-    handleDelSucc (res, index) {
-      res = res.data
-      if (res.success) {
-        this.getEntrepreneurInfo()
-      }
+    _deleteEntrepreneur (id) {
+      deleteEntrepreneur(id).then((res) => {
+        res = res.data
+        if (res.success) {
+          this._getEntrepreneursList()
+        }
+      })
     }
-  },
-  mounted () {
-    this.getEntrepreneurInfo()
   }
 }
 </script>
@@ -110,36 +85,4 @@ export default {
       font-family: $fontFamily
       &:hover
         color: #FFF
-  .post
-    width: 80%
-    margin-top: 20px
-    .content
-      list-style-type: square
-      list-style-position: inside
-      padding: 6px 10px
-      border-bottom: 1px dotted #ccc
-      color: $bgColor
-      letter-spacing: 1px
-      justify-content: space-between
-      line-height: 32px
-      height: 32px
-      .content-title
-        display: inline-block
-        vertical-align: middle
-        width: 76%
-        ellipsis()
-        color: #666
-        font-size: 16px
-        &:hover
-          color: $bgColor
-      .button
-        padding: 4px 8px
-        color: #888
-        border-radius: 2px
-        border: 1px solid #888
-        cursor: pointer
-        margin-left: 5px
-    .content-pagination
-      margin: 20px 0
-      padding: 0 30px
 </style>

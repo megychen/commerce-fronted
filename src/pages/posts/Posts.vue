@@ -1,23 +1,13 @@
 <template>
   <div class="content-wraper">
-    <ul class="post">
-      <li class="content" v-for="item of postList" :key="item._id">
-        <a v-if="item.postLink" class="content-title" :href="item.postLink">{{item.title}}</a>
-        <a v-else class="content-title" :href="'/#/posts/' + item._id">{{item.title}}</a>
-        <router-link :to="'/admin/posts-edit/' + item._id"><button class="button">编辑</button></router-link>
-        <button class="button" @click="handleDelBtn(item._id)">删除</button>
-      </li>
-      <li class="content-pagination">
-        <common-pagination
-          :currentPage="currentPage"
-          :totalPages="totalPages"
-          :total="total"
-          :perPage="10"
-          @pagechanged="onPageChange"
-        >
-        </common-pagination>
-      </li>
-    </ul>
+    <backend-tem
+      :items="postList"
+      :total="total"
+      :type="'posts'"
+      @pageChange="handlePageChanged"
+      @deleteItem="handleItemDelete"
+    >
+    </backend-tem>
     <div class="new">
       <router-link to="/admin/posts-new"><div class="new-tit">新增新闻</div></router-link>
     </div>
@@ -25,12 +15,12 @@
 </template>
 
 <script>
-import axios from 'axios'
-import CommonPagination from '../common/Pagination'
+import {getNewsList, deleteNew} from 'api/news'
+import BackendTem from '../common/BackendTem'
 export default {
   name: 'Posts',
   components: {
-    CommonPagination
+    BackendTem
   },
   data () {
     return {
@@ -40,50 +30,34 @@ export default {
       total: 0
     }
   },
-  computed: {
-    totalPages () {
-      return Math.ceil(this.total / 10)
-    }
+  created () {
+    this._getNewsList()
   },
   methods: {
-    getPostInfo () {
-      axios.get('/api/posts', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
-        }
-      }).then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.postList = res.postList
-        this.total = res.total
-      }
-    },
-    onPageChange (page) {
-      console.log(page)
+    handlePageChanged (page) {
       this.currentPage = page
-      axios.get('/api/posts', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
+      this._getNewsList()
+    },
+    handleItemDelete (id) {
+      this._deleteNew(id)
+    },
+    _getNewsList () {
+      getNewsList(this.perPage, this.currentPage).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.postList = res.postList
+          this.total = res.total
         }
-      }).then(this.handleDataSucc)
+      })
     },
-    handleDelBtn (id) {
-      axios.delete('/api/posts/' + id)
-        .then(this.handleDelSucc)
-    },
-    handleDelSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.getPostInfo()
-      }
+    _deleteNew (id) {
+      deleteNew(id).then((res) => {
+        res = res.data
+        if (res.success) {
+          this._getNewsList()
+        }
+      })
     }
-  },
-  mounted () {
-    this.getPostInfo()
   }
 }
 </script>
@@ -111,36 +85,4 @@ export default {
       font-family: $fontFamily
       &:hover
         color: #FFF
-  .post
-    width: 80%
-    margin-top: 20px
-    .content
-      list-style-type: square
-      list-style-position: inside
-      padding: 6px 10px
-      border-bottom: 1px dotted #ccc
-      color: $bgColor
-      letter-spacing: 1px
-      justify-content: space-between
-      line-height: 32px
-      height: 32px
-      .content-title
-        display: inline-block
-        vertical-align: middle
-        width: 76%
-        ellipsis()
-        color: #666
-        font-size: 16px
-        &:hover
-          color: $bgColor
-      .button
-        padding: 4px 8px
-        color: #888
-        border-radius: 2px
-        border: 1px solid #888
-        cursor: pointer
-        margin-left: 5px
-    .content-pagination
-      margin: 20px 0
-      padding: 0 30px
 </style>
