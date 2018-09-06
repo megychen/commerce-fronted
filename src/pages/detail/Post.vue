@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {getNewInfo} from 'api/news'
 import marked from 'marked'
 export default {
   name: 'PostDetail',
@@ -28,19 +28,17 @@ export default {
     }
   },
   methods: {
-    getPostInfo () {
-      axios.get('/api/posts/' + this.$route.params.id)
-        .then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.post = res.post
-      }
+    _getNewInfo () {
+      getNewInfo(this.$route.params.id).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.post = res.post
+        }
+      })
     }
   },
-  mounted () {
-    this.getPostInfo()
+  created () {
+    this._getNewInfo()
   }
 }
 </script>

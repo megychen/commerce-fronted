@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {getCompanyInfo} from 'api/companies'
 import marked from 'marked'
 export default {
   name: 'CompanyDetail',
@@ -28,19 +28,17 @@ export default {
     }
   },
   methods: {
-    getPostInfo () {
-      axios.get('/api/companies/' + this.$route.params.id)
-        .then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.company = res.company
-      }
+    _getCompanyInfo () {
+      getCompanyInfo(this.$route.params.id).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.company = res.company
+        }
+      })
     }
   },
-  mounted () {
-    this.getPostInfo()
+  created () {
+    this._getCompanyInfo()
   }
 }
 </script>

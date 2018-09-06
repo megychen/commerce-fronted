@@ -15,3 +15,13 @@ export function getNewsList (pageSize = 10, pageNo = 1, search) {
     })
   })
 }
+
+export function getNewInfo (id) {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/posts/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

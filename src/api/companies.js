@@ -14,3 +14,13 @@ export function getCompaniesList (pageSize = 10, pageNo = 1) {
     })
   })
 }
+
+export function getCompanyInfo (id) {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/companies/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

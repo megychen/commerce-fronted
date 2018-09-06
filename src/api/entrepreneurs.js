@@ -14,3 +14,13 @@ export function getEntrepreneursList (pageSize = 10, pageNo = 1) {
     })
   })
 }
+
+export function getEntrepreneurInfo (id) {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/entrepreneurs/${id}`).then((res) => {
+      resolve(res)
+    }).catch((err) => {
+      reject(new Error(err))
+    })
+  })
+}

@@ -5,7 +5,7 @@
         <side-bar></side-bar>
       </div>
       <div class="fc-content">
-        <router-view></router-view>
+        <keep-alive><router-view></router-view></keep-alive>
       </div>
     </div>
   </div>
