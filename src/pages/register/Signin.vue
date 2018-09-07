@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {signin} from 'api/users'
+
 export default {
   name: 'Signin',
   data () {
@@ -35,25 +36,24 @@ export default {
     },
     handleBtnSubmit () {
       if (this.validInput()) {
-        axios.post('/api/signin', {
-          name: this.name,
-          password: this.password
-        }).then(this.handleDataSucc)
+        this._signin()
       }
     },
-    handleDataSucc (res) {
-      res = res.data
-      if (!res.success) {
-        this.errMsg = res.message
-        return
-      }
-      const cookieVal = {
-        id: res.token.id,
-        name: res.token.name,
-        isAdmin: res.token.isAdmin
-      }
-      this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1D'})
-      this.$router.push('/')
+    _signin () {
+      signin(this.name, this.password).then((res) => {
+        res = res.data
+        if (!res.success) {
+          this.errMsg = res.message
+          return
+        }
+        const cookieVal = {
+          id: res.token.id,
+          name: res.token.name,
+          isAdmin: res.token.isAdmin
+        }
+        this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1D'})
+        this.$router.push('/')
+      })
     }
   },
   mounted () {

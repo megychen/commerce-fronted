@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {signup} from 'api/users'
+
 export default {
   name: 'Signin',
   data () {
@@ -43,20 +44,18 @@ export default {
     },
     handleBtnSubmit () {
       if (this.validInput()) {
-        axios.post('/api/signup', {
-          name: this.name,
-          password: this.password,
-          rePass: this.rePass
-        }).then(this.handleDataSucc)
+        this._signup()
       }
     },
-    handleDataSucc (res) {
-      res = res.data
-      if (!res.success) {
-        this.errMsg = res.message
-        return
-      }
-      this.$router.push('/signin')
+    _signup () {
+      signup(this.name, this.password, this.rePass).then((res) => {
+        res = res.data
+        if (!res.success) {
+          this.errMsg = res.message
+          return
+        }
+        this.$router.push('/signin')
+      })
     }
   }
 }
