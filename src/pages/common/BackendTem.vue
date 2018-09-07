@@ -2,8 +2,8 @@
   <ul class="post">
     <li class="content" v-for="item of items" :key="item._id">
       <a class="content-title" :href="link(item)">{{title(item)}}  {{company(item)}}</a>
-      <router-link :to="editLink(item)"><button class="button">{{btn1Txt(item)}}</button></router-link>
-      <button class="button" @click="handleDelBtn(item._id)">{{btn2Txt(item)}}</button>
+      <router-link :to="editLink(item)"><button class="button">编辑</button></router-link>
+      <button class="button" @click="handleDelBtn(item._id)">删除</button>
     </li>
     <li class="content-pagination">
       <common-pagination
@@ -60,22 +60,8 @@ export default {
     company (item) {
       return item.company ? item.company : ''
     },
-    btn1Txt (item) {
-      if (this.type === 'users') {
-        return item.isAdmin ? '取消管理员' : '设为管理员'
-      } else {
-        return '编辑'
-      }
-    },
     editLink (item) {
       return `/admin/${this.type}-edit/${item._id}`
-    },
-    btn2Txt (item) {
-      if (this.type === 'users') {
-
-      } else {
-        return '删除'
-      }
     },
     onPageChange (page) {
       this.currentPage = page

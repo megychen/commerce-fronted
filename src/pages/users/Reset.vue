@@ -11,7 +11,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import {resetUserPass} from 'api/users'
+
 export default {
   name: 'UserReset',
   data () {
@@ -43,17 +45,26 @@ export default {
     handleBtnSubmit () {
       if (this.validInput()) {
         const id = this.$route.params.id
-        axios.patch('/api/users/' + id + '/reset', {
-          newPass: this.newPass,
-          newRepass: this.newRepass
-        }).then(this.handleResetSucc)
+        // axios.patch('/api/users/' + id + '/reset', {
+        //   newPass: this.newPass,
+        //   newRepass: this.newRepass
+        // }).then(this.handleResetSucc)
+        this._resetUserPass(id)
       }
     },
-    handleResetSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.$router.push('/admin/users')
-      }
+    // handleResetSucc (res) {
+    //   res = res.data
+    //   if (res.success) {
+    //     this.$router.push('/admin/users')
+    //   }
+    // },
+    _resetUserPass (id) {
+      resetUserPass(id, this.newPass, this.newRepass).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.$router.push('/admin/users')
+        }
+      })
     }
   }
 }

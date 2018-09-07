@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import axios from 'axios'
 import CommonPagination from '../common/Pagination'
+import {getUsersList, setUserAdmin} from 'api/users'
+
 export default {
   name: 'Users',
   components: {
@@ -53,45 +54,34 @@ export default {
         return '取消管理员'
       }
     },
-    getUserInfo () {
-      axios.get('/api/users', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
-        }
-      }).then(this.handleDataSucc)
-    },
-    handleDataSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.userList = res.userList
-        this.total = res.total
-      }
-    },
     onPageChange (page) {
       this.currentPage = page
-      axios.get('/api/users', {
-        params: {
-          pageNo: this.currentPage,
-          pageSize: this.perPage
-        }
-      }).then(this.handleDataSucc)
+      this._getUsersList()
     },
     handleManageBtn (id, isAdmin) {
-      axios.patch('/api/users/' + id, {
-        isAdmin: !isAdmin
-      }).then(this.handleManageSucc)
+      this._setUserAdmin(id, isAdmin)
     },
-    handleManageSucc (res) {
-      res = res.data
-      if (res.success) {
-        this.message = res.message
-        this.getUserInfo()
-      }
+    _getUsersList () {
+      getUsersList(this.perPage, this.currentPage).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.userList = res.userList
+          this.total = res.total
+        }
+      })
+    },
+    _setUserAdmin (id, isAdmin) {
+      setUserAdmin(id, isAdmin).then((res) => {
+        res = res.data
+        if (res.success) {
+          this.message = res.message
+          this._getUsersList()
+        }
+      })
     }
   },
   mounted () {
-    this.getUserInfo()
+    this._getUsersList()
   }
 }
 </script>
