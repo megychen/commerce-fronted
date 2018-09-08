@@ -3,6 +3,7 @@
     <backend-tem
       :items="postList"
       :total="total"
+      :perPage="perPage"
       :type="'posts'"
       @pageChange="handlePageChanged"
       @deleteItem="handleItemDelete"
@@ -26,7 +27,7 @@ export default {
     return {
       postList: [],
       currentPage: 1,
-      perPage: 10,
+      perPage: 20,
       total: 0
     }
   },

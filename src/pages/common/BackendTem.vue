@@ -10,7 +10,7 @@
         :currentPage="currentPage"
         :totalPages="totalPages"
         :total="total"
-        :perPage="10"
+        :perPage="perPage"
         @pagechanged="onPageChange"
       >
       </common-pagination>
@@ -34,6 +34,10 @@ export default {
       type: Number,
       default: 0
     },
+    perPage: {
+      type: Number,
+      default: 10
+    },
     type: {
       type: String,
       default: ''
@@ -41,13 +45,12 @@ export default {
   },
   data () {
     return {
-      currentPage: 1,
-      perPage: 10
+      currentPage: 1
     }
   },
   computed: {
     totalPages () {
-      return Math.ceil(this.total / 10)
+      return Math.ceil(this.total / this.perPage)
     }
   },
   methods: {

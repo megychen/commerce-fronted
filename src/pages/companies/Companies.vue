@@ -3,6 +3,7 @@
     <backend-tem
       :items="companyList"
       :total="total"
+      :perPage="perPage"
       :type="'companies'"
       @pageChange="handlePageChanged"
       @deleteItem="handleItemDelete"
@@ -27,7 +28,7 @@ export default {
     return {
       companyList: [],
       currentPage: 1,
-      perPage: 10,
+      perPage: 20,
       total: 0
     }
   },

@@ -13,8 +13,8 @@
         <common-pagination
           :currentPage="currentPage"
           :totalPages="totalPages"
+          :perPage="perPage"
           :total="total"
-          :perPage="10"
           @pagechanged="onPageChange"
         >
         </common-pagination>
@@ -36,7 +36,7 @@ export default {
     return {
       userList: [],
       currentPage: 1,
-      perPage: 10,
+      perPage: 20,
       total: 0,
       message: ''
     }
