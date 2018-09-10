@@ -47,11 +47,14 @@ export default {
           return
         }
         const cookieVal = {
-          id: res.token.id,
           name: res.token.name,
           isAdmin: res.token.isAdmin
         }
-        this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1D'})
+        const token = {
+          id: res.token.id
+        }
+        this.$cookie.set('token', JSON.stringify(token), {expires: '1M'})
+        this.$cookie.set('commerce', JSON.stringify(cookieVal), {expires: '1M'})
         this.$router.push('/')
       })
     }

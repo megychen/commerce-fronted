@@ -1,5 +1,16 @@
 import axios from 'axios'
 
+export function getCurrentUser (id) {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/auth/${id}`)
+      .then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(new Error(err))
+      })
+  })
+}
+
 export function signin (name, password) {
   return new Promise((resolve, reject) => {
     axios.post('/api/signin', {

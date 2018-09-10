@@ -52,6 +52,7 @@ export default {
       this.keyword = ''
     },
     handleLogOut () {
+      this.$cookie.delete('token')
       this.$cookie.delete('commerce')
       this.$router.go(0)
     }
