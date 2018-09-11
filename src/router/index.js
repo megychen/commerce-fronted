@@ -55,9 +55,9 @@ export default new Router({
     }, {
       path: '/admin',
       name: 'Backend',
+      redirect: '/admin/posts',
       component: Backend,
       children: [
-        {path: '/admin', redirect: 'posts'},
         { path: '/admin/posts', component: Posts },
         { path: '/admin/posts-new', component: PostNew },
         { path: '/admin/posts-edit/:id', component: PostEdit },

@@ -24,7 +24,7 @@ export default {
       createNews(data).then((res) => {
         res = res.data
         if (res.success) {
-          this.$router.push('/admin/posts')
+          this.$router.push('/admin')
         }
       })
     }

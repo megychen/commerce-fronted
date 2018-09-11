@@ -4,7 +4,7 @@
       <li class="message" v-if="message"><span class="message">{{message}}!</span></li>
       <li class="content" v-for="item of userList" :key="item._id">
         <span class="content-title">{{item.name}}</span>
-        <button class="button" @click="handleManageBtn(item._id, item.isAdmin)">{{word(item.isAdmin)}}</button>
+        <button class="button" :disabled="item.name === currentUser.name" @click="handleManageBtn(item._id, item.isAdmin)">{{word(item.isAdmin)}}</button>
         <router-link :to="'/admin/users-reset/' + item._id">
           <button class="button">重置密码</button>
         </router-link>
@@ -38,7 +38,8 @@ export default {
       currentPage: 1,
       perPage: 20,
       total: 0,
-      message: ''
+      message: '',
+      currentUser: {}
     }
   },
   computed: {
@@ -82,6 +83,7 @@ export default {
   },
   mounted () {
     this._getUsersList()
+    this.currentUser = JSON.parse(this.$cookie.get('commerce'))
   }
 }
 </script>
