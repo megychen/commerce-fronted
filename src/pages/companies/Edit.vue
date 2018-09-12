@@ -3,6 +3,7 @@
     <new-template
       :item="company"
       @submit="handleSubmit"
+      :flag="'companies'"
     >
     </new-template>
   </div>

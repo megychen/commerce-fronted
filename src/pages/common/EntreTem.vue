@@ -24,6 +24,8 @@
 import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import {setLocalStorageInfo} from 'api/localstorage'
+
 export default {
   name: 'EntreTemplate',
   components: {
@@ -32,6 +34,9 @@ export default {
   props: {
     item: {
       type: Object
+    },
+    flag: {
+      type: String
     }
   },
   data () {
@@ -94,6 +99,7 @@ export default {
         formData.append('description', this.description)
         formData.append('avatar', this.avatar)
         formData.append('currentImg', this.currentImg)
+        setLocalStorageInfo(`${this.flag}`, true)
         this.$emit('submit', formData)
       }
     }

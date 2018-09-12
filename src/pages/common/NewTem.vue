@@ -34,6 +34,8 @@
 import axios from 'axios'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import {setLocalStorageInfo} from 'api/localstorage'
+
 export default {
   name: 'NewTemplate',
   components: {
@@ -42,6 +44,9 @@ export default {
   props: {
     item: {
       type: Object
+    },
+    flag: {
+      type: String
     }
   },
   data () {
@@ -111,6 +116,7 @@ export default {
         formData.append('postImg', this.postImg)
         formData.append('currentImg', this.currentImg)
         formData.append('timestamp', this.timestamp)
+        setLocalStorageInfo(`${this.flag}`, true)
         this.$emit('submit', formData)
       }
     }

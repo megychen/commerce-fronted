@@ -18,6 +18,10 @@
 <script>
 import {getNewsList, deleteNew} from 'api/news'
 import BackendTem from '../common/BackendTem'
+import {getLocalStorageInfo, setLocalStorageInfo} from 'api/localstorage'
+
+const TYPE = 'postsUpdate'
+
 export default {
   name: 'Posts',
   components: {
@@ -33,6 +37,13 @@ export default {
   },
   created () {
     this._getNewsList()
+  },
+  activated () {
+    let ret = getLocalStorageInfo(TYPE)
+    if (ret === 'true') {
+      this._getNewsList()
+      setLocalStorageInfo(TYPE, false)
+    }
   },
   methods: {
     handlePageChanged (page) {

@@ -2,7 +2,7 @@
   <div>
     <div class="new">新增企业家</div>
     <div>
-      <entre-template @submit="handleSubmit"></entre-template>
+      <entre-template :flag="'entresUpdate'" @submit="handleSubmit"></entre-template>
     </div>
   </div>
 </template>

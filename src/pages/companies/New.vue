@@ -2,7 +2,7 @@
   <div>
     <div class="new">新增企业</div>
     <div>
-      <new-template @submit="handleSubmit"></new-template>
+      <new-template :flag="'companies'" @submit="handleSubmit"></new-template>
     </div>
   </div>
 </template>

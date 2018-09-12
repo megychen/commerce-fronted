@@ -18,6 +18,9 @@
 <script>
 import {getCompaniesList, deleteCompany} from 'api/companies'
 import BackendTem from '../common/BackendTem'
+import {getLocalStorageInfo, setLocalStorageInfo} from 'api/localstorage'
+
+const TYPE = 'companiesUpdate'
 
 export default {
   name: 'Companies',
@@ -34,6 +37,13 @@ export default {
   },
   created () {
     this._getCompaniesList()
+  },
+  activated () {
+    let ret = getLocalStorageInfo(TYPE)
+    if (ret === 'true') {
+      this._getCompaniesList()
+      setLocalStorageInfo(TYPE, false)
+    }
   },
   methods: {
     handlePageChanged (page) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <new-template :item="post" @submit="handleSubmit"></new-template>
+    <new-template :flag="'posts'" :item="post" @submit="handleSubmit"></new-template>
   </div>
 </template>
 

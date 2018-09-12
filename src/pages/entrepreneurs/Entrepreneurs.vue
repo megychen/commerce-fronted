@@ -18,6 +18,10 @@
 <script>
 import {getEntrepreneursList, deleteEntrepreneur} from 'api/entrepreneurs'
 import BackendTem from '../common/BackendTem'
+import {getLocalStorageInfo, setLocalStorageInfo} from 'api/localstorage'
+
+const TYPE = 'entresUpdate'
+
 export default {
   name: 'Entrepreneurs',
   components: {
@@ -33,6 +37,13 @@ export default {
   },
   created () {
     this._getEntrepreneursList()
+  },
+  activated () {
+    let ret = getLocalStorageInfo(TYPE)
+    if (ret === 'true') {
+      this._getEntrepreneursList()
+      setLocalStorageInfo(TYPE, false)
+    }
   },
   methods: {
     handlePageChanged (page) {

@@ -14,6 +14,11 @@ export default {
     if (this.token) {
       this._getCurrentUser()
     }
+    try {
+      localStorage.postsUpdate = false
+      localStorage.companiesUpdate = false
+      localStorage.entresUpdate = false
+    } catch (e) {}
   },
   methods: {
     _getCurrentUser () {

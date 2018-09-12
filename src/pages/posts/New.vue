@@ -2,7 +2,7 @@
   <div>
     <div class="new">新增新闻</div>
     <div>
-      <new-template @submit="handleSubmit"></new-template>
+      <new-template :flag="'posts'" @submit="handleSubmit"></new-template>
     </div>
   </div>
 

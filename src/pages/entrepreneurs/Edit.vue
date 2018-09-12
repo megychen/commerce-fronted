@@ -3,6 +3,7 @@
     <entre-template
       :item="entrepreneur"
       @submit="handleSubmit"
+      :flag="'entresUpdate'"
     >
     </entre-template>
   </div>
