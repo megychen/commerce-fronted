@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import PostTem from '../../common/PostTem'
+import PostTem from 'common/PostTem'
 import {getCompaniesList} from 'api/companies'
 export default {
   name: 'Comapnies',

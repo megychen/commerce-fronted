@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import PostTem from '../common/PostTem'
+import PostTem from 'common/PostTem'
 import {getNewsList} from 'api/news'
 
 export default {

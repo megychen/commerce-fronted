@@ -9,7 +9,7 @@
 
 <script>
 import {createCompanies} from 'api/companies'
-import NewTemplate from '../common/NewTem'
+import NewTemplate from 'common/NewTem'
 export default {
   name: 'CompanyNew',
   data () {

@@ -17,7 +17,7 @@
 
 <script>
 import {getEntrepreneursList, deleteEntrepreneur} from 'api/entrepreneurs'
-import BackendTem from '../common/BackendTem'
+import BackendTem from 'common/BackendTem'
 import {getLocalStorageInfo, setLocalStorageInfo} from 'api/localstorage'
 
 const TYPE = 'entresUpdate'

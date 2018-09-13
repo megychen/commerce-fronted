@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-import EntreTemplate from '../common/EntreTem'
+import EntreTemplate from 'common/EntreTem'
 export default {
   name: 'EntrepreneurEdit',
   data () {

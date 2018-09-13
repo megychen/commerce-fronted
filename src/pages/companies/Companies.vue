@@ -17,7 +17,7 @@
 
 <script>
 import {getCompaniesList, deleteCompany} from 'api/companies'
-import BackendTem from '../common/BackendTem'
+import BackendTem from 'common/BackendTem'
 import {getLocalStorageInfo, setLocalStorageInfo} from 'api/localstorage'
 
 const TYPE = 'companiesUpdate'

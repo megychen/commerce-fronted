@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import CommonPagination from '../common/Pagination'
+import CommonPagination from 'common/Pagination'
 import {getUsersList, setUserAdmin} from 'api/users'
 
 export default {

@@ -6,7 +6,7 @@
 
 <script>
 import axios from 'axios'
-import NewTemplate from '../common/NewTem'
+import NewTemplate from 'common/NewTem'
 export default {
   name: 'PostEdit',
   components: {

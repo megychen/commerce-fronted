@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import NewTemplate from '../common/NewTem'
+import NewTemplate from 'common/NewTem'
 import {createNews} from 'api/news'
 export default {
   name: 'PostNew',

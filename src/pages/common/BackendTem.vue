@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CommonPagination from '../common/Pagination'
+import CommonPagination from 'common/Pagination'
 export default {
   name: 'BackendTem',
   components: {

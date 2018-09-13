@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import EntreTemplate from '../common/EntreTem'
+import EntreTemplate from 'common/EntreTem'
 import {createEntrepreneurs} from 'api/entrepreneurs'
 
 export default {
