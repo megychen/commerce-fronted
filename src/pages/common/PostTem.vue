@@ -2,7 +2,7 @@
   <ul class="postList">
     <li v-for="item of items" :key="item.id">
       <a class="cover" :href="link(item)">
-        <div class="pic-wraper">
+        <div class="pic-wraper" :style="{ overflow: isOverflow }">
           <img class="pic" v-if="image(item)" :src="image(item)">
           <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
         </div>
@@ -66,6 +66,9 @@ export default {
   computed: {
     totalPages () {
       return Math.ceil(this.total / 10)
+    },
+    isOverflow () {
+      return this.type === 'posts' ? 'hidden' : 'none'
     }
   },
   methods: {
@@ -116,7 +119,7 @@ export default {
         display: block
         width: 26%
         .pic-wraper
-          overflow: hidden
+          // overflow: hidden
           width: 100%
           height: 0
           padding-bottom: 66.67%
