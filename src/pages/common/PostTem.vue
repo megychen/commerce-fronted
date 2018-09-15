@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     title (item) {
-      return item.title ? item.title : item.name
+      return item.name ? item.name : item.title
     },
     link (item) {
       return item.postLink ? item.postLink : `/#/${this.type}/${item._id}`
