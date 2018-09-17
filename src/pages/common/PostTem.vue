@@ -2,7 +2,7 @@
   <ul class="postList">
     <li v-for="item of items" :key="item.id">
       <a class="cover" :href="link(item)">
-        <div class="pic-wraper" :style="{ overflow: isOverflow }">
+        <div class="pic-wraper" :style="{ overflow: isOverflow, marginTop: marginTop }">
           <img class="pic" v-if="image(item)" :src="image(item)">
           <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
         </div>
@@ -69,6 +69,9 @@ export default {
     },
     isOverflow () {
       return this.type === 'posts' ? 'hidden' : 'none'
+    },
+    marginTop () {
+      return this.type === 'companies' ? '15px' : ''
     }
   },
   methods: {
