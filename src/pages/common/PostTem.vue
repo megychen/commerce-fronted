@@ -4,7 +4,7 @@
       <a class="cover" :href="link(item)">
         <div class="pic-wraper" :style="{ overflow: isOverflow, marginTop: marginTop }">
           <img class="pic" v-if="image(item)" :src="image(item)">
-          <img class="pic" v-else :src="~styles/images/defaultImg.jpg">
+          <img class="pic" v-else src="~styles/images/defaultImg.jpg">
         </div>
       </a>
       <div class="text">
