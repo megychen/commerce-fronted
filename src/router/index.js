@@ -1,30 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home/Home.vue'
-import Backend from '@/pages/backend/Backend'
-import Posts from '@/pages/posts/Posts'
-import PostNew from '@/pages/posts/New'
-import PostEdit from '@/pages/posts/Edit'
-import Companies from '@/pages/companies/Companies'
-import CompanyNew from '@/pages/companies/New'
-import CompanyEdit from '@/pages/companies/Edit'
-import Signup from '@/pages/register/Signup'
-import Signin from '@/pages/register/Signin'
-import Index from '@/pages/index/Index.vue'
-import Intro from '@/pages/intro/Intro.vue'
-import NewsAll from '@/pages/news/NewsAll.vue'
-import Entrepreneurs from '@/pages/entrepreneurs/Entrepreneurs'
-import EntrepreneurNew from '@/pages/entrepreneurs/New'
-import EntrepreneurEdit from '@/pages/entrepreneurs/Edit'
-import Users from '@/pages/users/Users'
-import UserReset from '@/pages/users/Reset'
-
-import PostDetail from '@/pages/detail/Post'
-import CompanyDetail from '@/pages/detail/Company'
-import EntrepreneurDetail from '@/pages/detail/Entrepreneur'
-import FengCai from '@/pages/fengcai/FengCai'
-import ComFengcai from '@/pages/fengcai/components/Company'
-import EntFengcai from '@/pages/fengcai/components/Entrepreneur'
 
 Vue.use(Router)
 
@@ -34,50 +9,50 @@ export default new Router({
       path: '/',
       redirect: 'index',
       name: 'Home',
-      component: Home,
+      component: () => import('@/pages/home/Home.vue'),
       children: [
-        {path: '/index', component: Index},
-        {path: '/intro', component: Intro},
-        {path: '/news', component: NewsAll},
+        { path: '/index', component: () => import('@/pages/index/Index.vue') },
+        { path: '/intro', component: () => import('@/pages/intro/Intro.vue') },
+        { path: '/news', component: () => import('@/pages/news/NewsAll.vue') },
         {
           path: '/fengcai',
-          component: FengCai,
+          component: () => import('@/pages/fengcai/FengCai'),
           redirect: '/fengcai/entrepreneurs',
           children: [
-            {path: '/fengcai/entrepreneurs', component: EntFengcai},
-            {path: '/fengcai/companies', component: ComFengcai}
+            {path: '/fengcai/entrepreneurs', component: () => import('@/pages/fengcai/components/Entrepreneur')},
+            {path: '/fengcai/companies', component: () => import('@/pages/fengcai/components/Company')}
           ]
         },
-        {path: '/posts/:id', component: PostDetail},
-        {path: '/companies/:id', component: CompanyDetail},
-        {path: '/entrepreneurs/:id', component: EntrepreneurDetail}
+        {path: '/posts/:id', component: () => import('@/pages/detail/Post')},
+        {path: '/companies/:id', component: () => import('@/pages/detail/Company')},
+        {path: '/entrepreneurs/:id', component: () => import('@/pages/detail/Entrepreneur')}
       ]
     }, {
       path: '/admin',
       name: 'Backend',
       redirect: '/admin/posts',
-      component: Backend,
+      component: () => import('@/pages/backend/Backend'),
       children: [
-        { path: '/admin/posts', component: Posts },
-        { path: '/admin/posts-new', component: PostNew },
-        { path: '/admin/posts-edit/:id', component: PostEdit },
-        { path: '/admin/companies', component: Companies },
-        { path: '/admin/companies-new', component: CompanyNew },
-        { path: '/admin/companies-edit/:id', component: CompanyEdit },
-        { path: '/admin/entrepreneurs', component: Entrepreneurs },
-        { path: '/admin/entrepreneurs-new', component: EntrepreneurNew },
-        { path: '/admin/entrepreneurs-edit/:id', component: EntrepreneurEdit },
-        { path: '/admin/users', component: Users },
-        { path: '/admin/users-reset/:id', component: UserReset }
+        { path: '/admin/posts', component: () => import('@/pages/posts/Posts') },
+        { path: '/admin/posts-new', component: () => import('@/pages/posts/New') },
+        { path: '/admin/posts-edit/:id', component: () => import('@/pages/posts/Edit') },
+        { path: '/admin/companies', component: () => import('@/pages/companies/Companies') },
+        { path: '/admin/companies-new', component: () => import('@/pages/companies/New') },
+        { path: '/admin/companies-edit/:id', component: () => import('@/pages/companies/Edit') },
+        { path: '/admin/entrepreneurs', component: () => import('@/pages/entrepreneurs/Entrepreneurs') },
+        { path: '/admin/entrepreneurs-new', component: () => import('@/pages/entrepreneurs/New') },
+        { path: '/admin/entrepreneurs-edit/:id', component: () => import('@/pages/entrepreneurs/Edit') },
+        { path: '/admin/users', component: () => import('@/pages/users/Users') },
+        { path: '/admin/users-reset/:id', component: () => import('@/pages/users/Reset') }
       ]
     }, {
       path: '/signup',
       name: 'Signup',
-      component: Signup
+      component: () => import('@/pages/register/Signup')
     }, {
       path: '/signin',
       name: 'Signin',
-      component: Signin
+      component: () => import('@/pages/register/Signin')
     }
   ]
 })
