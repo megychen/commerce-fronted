@@ -2,8 +2,8 @@
   <div class="content">
     <head><base target="_blank" /></head>
     <post-tem
-      :items="postList"
-      :total="total"
+      :items="news"
+      :total="newsTotal"
       :type="'posts'"
       @pageChange="handlePageChanged"
     >
@@ -14,6 +14,7 @@
 <script>
 import PostTem from 'common/PostTem'
 import {getNewsList} from 'api/news'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: 'NewsAll',
@@ -24,13 +25,8 @@ export default {
     return {
       currentPage: 1,
       perPage: 10,
-      postList: [],
-      total: 0,
       search: ''
     }
-  },
-  created () {
-    this._getNewsList()
   },
   methods: {
     handlePageChanged (page) {
@@ -42,21 +38,34 @@ export default {
       getNewsList(this.perPage, this.currentPage, this.search).then((res) => {
         res = res.data
         if (res.success) {
-          this.postList = res.postList
-          this.total = res.total
+          this.setNews(res.postList)
+          this.setNewsTotal(res.total)
         }
       })
-    }
+    },
+    ...mapMutations({
+      setNews: 'SET_NEWS',
+      setNewsTotal: 'SET_NEWS_TOTAL'
+    })
   },
   computed: {
     totalPages () {
-      return Math.ceil(this.total / 10)
-    }
+      return Math.ceil(this.newsTotal / 10)
+    },
+    ...mapGetters([
+      'news',
+      'newsTotal'
+    ])
   },
   watch: {
     '$route' () {
       this._getNewsList()
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.currentPage = 1
+    this._getNewsList()
+    next()
   }
 }
 </script>

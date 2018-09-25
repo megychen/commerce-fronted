@@ -2,8 +2,8 @@
   <div class="content">
     <head><base target="_blank" /></head>
     <post-tem
-      :items="companyList"
-      :total="total"
+      :items="companies"
+      :total="companiesTotal"
       :type="'companies'"
       @pageChange="handlePageChanged"
     >
@@ -14,6 +14,8 @@
 <script>
 import PostTem from 'common/PostTem'
 import {getCompaniesList} from 'api/companies'
+import {mapGetters, mapMutations} from 'vuex'
+
 export default {
   name: 'Comapnies',
   components: {
@@ -22,13 +24,8 @@ export default {
   data () {
     return {
       currentPage: 1,
-      perPage: 10,
-      companyList: [],
-      total: 0
+      perPage: 10
     }
-  },
-  created () {
-    this._getCompaniesList()
   },
   methods: {
     handlePageChanged (page) {
@@ -39,16 +36,29 @@ export default {
       getCompaniesList(this.perPage, this.currentPage).then((res) => {
         res = res.data
         if (res.success) {
-          this.companyList = res.companyList
-          this.total = res.total
+          this.setCompanies(res.companyList)
+          this.setCompaniesTotal(res.total)
         }
       })
-    }
+    },
+    ...mapMutations({
+      setCompanies: 'SET_COMPANIES',
+      setCompaniesTotal: 'SET_COMPANIES_TOTAL'
+    })
   },
   computed: {
     totalPages () {
-      return Math.ceil(this.total / 10)
-    }
+      return Math.ceil(this.companiesTotal / 10)
+    },
+    ...mapGetters([
+      'companies',
+      'companiesTotal'
+    ])
+  },
+  beforeRouteLeave (to, from, next) {
+    this.currentPage = 1
+    this._getCompaniesList()
+    next()
   }
 }
 </script>

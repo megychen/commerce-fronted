@@ -1,8 +1,10 @@
 <template>
   <div class="main">
     <home-banner></home-banner>
-    <index-news :news="postList"></index-news>
-    <feng-cai :companies="companyList" :entrepreneurs="entrepreneurList"></feng-cai>
+    <!-- <index-news :news="postList"></index-news>
+    <feng-cai :companies="companyList" :entrepreneurs="entrepreneurList"></feng-cai> -->
+    <index-news :news="news"></index-news>
+    <feng-cai :companies="companies" :entrepreneurs="entrepreneurs"></feng-cai>
     <home-friends :linkList="linkList"></home-friends>
   </div>
 </template>
@@ -16,6 +18,7 @@ import axios from 'axios'
 import {getNewsList} from 'api/news'
 import {getCompaniesList} from 'api/companies'
 import {getEntrepreneursList} from 'api/entrepreneurs'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'Home',
@@ -32,6 +35,13 @@ export default {
       entrepreneurList: [],
       companyList: []
     }
+  },
+  computed: {
+    ...mapGetters([
+      'news',
+      'companies',
+      'entrepreneurs'
+    ])
   },
   methods: {
     getHomeInfo () {
@@ -67,7 +77,7 @@ export default {
   },
   mounted () {
     this.getHomeInfo()
-    this.query()
+    // this.query()
   }
 }
 </script>
